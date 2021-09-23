@@ -5,6 +5,7 @@ namespace statikbe\cookiebanner\variables;
 
 use craft\web\View;
 use statikbe\cookiebanner\assetbundles\cookiebanner\CookieBannerAsset;
+use statikbe\cookiebanner\assetbundles\cookiebanner\CookieBannerIEAsset;
 
 class CookieBannerVariable
 {
@@ -31,7 +32,6 @@ class CookieBannerVariable
                 echo \Craft::$app->getView()->renderTemplate($modal, [], View::TEMPLATE_MODE_SITE);
             } else {
                 echo \Craft::$app->getView()->renderTemplate($modal, [], View::TEMPLATE_MODE_CP);
-
             }
 
             if (isset($settings['banner']) && !empty($settings['banner'])) {
@@ -44,8 +44,13 @@ class CookieBannerVariable
             if (isset($settings['overlay']) && !empty($settings['overlay'])) {
                 echo \Craft::$app->getView()->renderString($settings['overlay'], [], View::TEMPLATE_MODE_SITE);
             }
+            // TODO: default overlay
 
-            \Craft::$app->getView()->registerAssetBundle(CookieBannerAsset::class, View::POS_END);
+            if($this->supportIE) {
+                \Craft::$app->getView()->registerAssetBundle(CookieBannerIEAsset::class, View::POS_END);
+            } else {
+                \Craft::$app->getView()->registerAssetBundle(CookieBannerAsset::class, View::POS_END);
+            }
 
         } catch (\Exception $e) {
             \Craft::error($e->getMessage(), 'cookie-banner');

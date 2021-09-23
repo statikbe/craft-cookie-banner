@@ -79,7 +79,7 @@ module.exports = (env, options) => {
                 ],
             },
             stats: 'normal',
-        }
+        },
         /**************************
          * IE 11 CSS and JS config
          **************************/
@@ -91,7 +91,7 @@ module.exports = (env, options) => {
             output: {
                 publicPath: '/',
                 path: getPublicPath(),
-                filename: isDevelopment ? 'js/cookie.js' : 'js/cookie-ie.[contenthash].js',
+                filename: isDevelopment ? 'js/cookie-ie.js' : 'js/cookie-ie.[contenthash].js',
             },
             resolve: {
                 extensions: ['*', '.tsx', '.ts', '.js', '.json'],
@@ -104,7 +104,14 @@ module.exports = (env, options) => {
                 rules: [
                     {
                         test: /\.tsx?$/,
-                        use: 'ts-loader',
+                        use: [
+                            {
+                                loader: 'ts-loader',
+                                options: {
+                                    configFile: 'tsconfig.ie.json',
+                                },
+                            },
+                        ],
                         exclude: /node_modules/,
                     },
                 ],
