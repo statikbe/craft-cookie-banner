@@ -8,7 +8,7 @@ use statikbe\cookiebanner\assetbundles\cookiebanner\CookieBannerAsset;
 
 class CookieBannerVariable
 {
-
+    public $supportIE = false;
 
     public function render($settings = [])
     {
@@ -16,12 +16,17 @@ class CookieBannerVariable
             return false;
         }
 
+        if (isset($settings['supportIE']) && !empty($settings['supportIE'])) {
+            $this->supportIE = $settings['supportIE'];
+        }
+
         $modal = 'cookie-banner/_modal';
         $banner = 'cookie-banner/_banner';
 
+
         try {
 
-            if (isset($settings['modal'])) {
+            if (isset($settings['modal']) && !empty($settings['modal'])) {
                 $modal = $settings['modal'];
                 echo \Craft::$app->getView()->renderTemplate($modal, [], View::TEMPLATE_MODE_SITE);
             } else {

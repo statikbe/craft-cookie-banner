@@ -83,6 +83,72 @@ module.exports = (env, options) => {
         /**************************
          * IE 11 CSS and JS config
          **************************/
+        {
+            mode: env.NODE_ENV,
+            entry: {
+                site: getSourcePath('js/ie.ts'),
+            },
+            output: {
+                publicPath: '/',
+                path: getPublicPath(),
+                filename: isDevelopment ? 'js/cookie.js' : 'js/cookie-ie.[contenthash].js',
+            },
+            resolve: {
+                extensions: ['*', '.tsx', '.ts', '.js', '.json'],
+                alias: {
+                    'wicg-inert': path.resolve('./node_modules/wicg-inert/dist/inert'),
+                },
+            },
+            devtool: false,
+            module: {
+                rules: [
+                    {
+                        test: /\.tsx?$/,
+                        use: 'ts-loader',
+                        exclude: /node_modules/,
+                    },
+                ],
+            },
+
+            // @ts-ignore
+            plugins: [
+                new CopyPlugin({
+                    patterns: [
+                        {
+                            from: getSourcePath('css/inert.css'),
+                            to: getPublicPath('css/inert.css'),
+                        }
+                    ],
+                }),
+                new Dotenv(),
+                ...(!options.watch
+                    ? [
+                        new HtmlWebpackPlugin({
+                            files: {
+                                js: 'js/[name].[contenthash].js',
+                            },
+                        }),
+                    ]
+                    : []),
+                new CleanWebpackPlugin({
+                    // dry: true,
+                    // verbose: true,
+                    cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', '!css/inert.css', '!css/ie.**.css', '!js/ie.**.js'],
+                }),
+            ],
+            optimization: {
+                minimizer: [
+                    new TerserJSPlugin({
+                        terserOptions: {
+                            output: {
+                                comments: false,
+                            },
+                        },
+                    }),
+                ],
+            },
+            stats: 'normal',
+        }
     ];
 };
 
