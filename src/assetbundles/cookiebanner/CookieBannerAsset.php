@@ -32,6 +32,10 @@ class CookieBannerAsset extends AssetBundle
             'js/cookie.js'
         ];
 
+        $this->css = [
+            'css/inert.css'
+        ];
+
         $this->depends = [];
 
         parent::init();

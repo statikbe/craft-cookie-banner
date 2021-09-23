@@ -20,7 +20,7 @@ class CookieBannerVariable
         $banner = 'cookie-banner/_banner';
 
         try {
-            \Craft::$app->getView()->registerAssetBundle(CookieBannerAsset::class, View::POS_HEAD);
+
             if (isset($settings['modal'])) {
                 $modal = $settings['modal'];
                 echo \Craft::$app->getView()->renderTemplate($modal, [], View::TEMPLATE_MODE_SITE);
@@ -29,16 +29,18 @@ class CookieBannerVariable
 
             }
 
-            if (isset($settings['banner'])) {
+            if (isset($settings['banner']) && !empty($settings['banner'])) {
                 $banner = $settings['banner'];
                 echo \Craft::$app->getView()->renderTemplate($banner, [], View::TEMPLATE_MODE_SITE);
             } else {
                 echo \Craft::$app->getView()->renderTemplate($banner, [], View::TEMPLATE_MODE_CP);
             }
 
-            if (isset($settings['overlay'])) {
+            if (isset($settings['overlay']) && !empty($settings['overlay'])) {
                 echo \Craft::$app->getView()->renderString($settings['overlay'], [], View::TEMPLATE_MODE_SITE);
             }
+
+            \Craft::$app->getView()->registerAssetBundle(CookieBannerAsset::class, View::POS_END);
 
         } catch (\Exception $e) {
             \Craft::error($e->getMessage(), 'cookie-banner');
