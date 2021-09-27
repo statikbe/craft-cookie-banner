@@ -124,6 +124,10 @@ module.exports = (env, options) => {
                         {
                             from: getSourcePath('css/inert.css'),
                             to: getPublicPath('css/inert.css'),
+                        },
+                        {
+                            from: getSourcePath('css/cookie-ie.css'),
+                            to: getPublicPath('css/cookie-ie.css'),
                         }
                     ],
                 }),

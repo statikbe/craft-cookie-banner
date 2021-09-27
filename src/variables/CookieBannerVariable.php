@@ -10,6 +10,17 @@ use statikbe\cookiebanner\assetbundles\cookiebanner\CookieBannerIEAsset;
 class CookieBannerVariable
 {
     public $supportIE = false;
+    public $modal = [
+        'template' => 'cookie-banner/_modal',
+        'mode' => View::TEMPLATE_MODE_CP
+    ];
+    public $banner = [
+        'template' => 'cookie-banner/_banner',
+        'mode' => View::TEMPLATE_MODE_CP
+    ];
+    public $overlay = 'cookie-banner/_overlay';
+
+    public $assetBundle = CookieBannerAsset::class;
 
     public function render($settings = [])
     {
@@ -21,36 +32,33 @@ class CookieBannerVariable
             $this->supportIE = $settings['supportIE'];
         }
 
-        $modal = 'cookie-banner/_modal';
-        $banner = 'cookie-banner/_banner';
-
-
         try {
 
             if (isset($settings['modal']) && !empty($settings['modal'])) {
-                $modal = $settings['modal'];
-                echo \Craft::$app->getView()->renderTemplate($modal, [], View::TEMPLATE_MODE_SITE);
-            } else {
-                echo \Craft::$app->getView()->renderTemplate($modal, [], View::TEMPLATE_MODE_CP);
+                $this->modal = ['template' => $settings['modal'], 'mode' => View::TEMPLATE_MODE_SITE];
             }
+            echo \Craft::$app->getView()->renderTemplate($this->modal['template'], [], $this->modal['mode']);
+
 
             if (isset($settings['banner']) && !empty($settings['banner'])) {
-                $banner = $settings['banner'];
-                echo \Craft::$app->getView()->renderTemplate($banner, [], View::TEMPLATE_MODE_SITE);
-            } else {
-                echo \Craft::$app->getView()->renderTemplate($banner, [], View::TEMPLATE_MODE_CP);
+                $this->banner = ['template' => $settings['banner'], 'mode' => View::TEMPLATE_MODE_SITE];
             }
+            echo \Craft::$app->getView()->renderTemplate($this->banner['template'], [], $this->banner['mode']);
+
 
             if (isset($settings['overlay']) && !empty($settings['overlay'])) {
                 echo \Craft::$app->getView()->renderString($settings['overlay'], [], View::TEMPLATE_MODE_SITE);
-            }
-            // TODO: default overlay
-
-            if($this->supportIE) {
-                \Craft::$app->getView()->registerAssetBundle(CookieBannerIEAsset::class, View::POS_END);
             } else {
-                \Craft::$app->getView()->registerAssetBundle(CookieBannerAsset::class, View::POS_END);
+                echo \Craft::$app->getView()->renderTemplate($this->overlay, [], View::TEMPLATE_MODE_CP);
             }
+
+
+            if ($this->supportIE) {
+                $this->assetBundle = CookieBannerIEAsset::class;
+            }
+
+            \Craft::$app->getView()->registerAssetBundle($this->assetBundle, View::POS_END);
+
 
         } catch (\Exception $e) {
             \Craft::error($e->getMessage(), 'cookie-banner');
