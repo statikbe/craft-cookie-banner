@@ -25,8 +25,8 @@ export class CookieComponent {
     const cookieBanner = document.getElementById('cookiebanner');
 
     if (shouldRun && cookieBanner) {
-      cookieBanner.classList.toggle('hidden');
-      document.getElementById('cookiebanner-overlay').classList.toggle('hidden');
+      cookieBanner.classList.remove('hidden');
+      document.getElementById('cookiebanner-overlay').classList.remove('hidden');
       A11yUtils.keepFocus(cookieBanner);
       cookieBanner.focus();
       const closeBtn = document.querySelector('.js-modal-close-btn') as HTMLElement;

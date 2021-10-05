@@ -53,7 +53,7 @@ class CookieBannerVariable
             }
 
 
-            if ($this->supportIE) {
+            if ($this->supportIE && $this->isBot("/Trident/i")) {
                 $this->assetBundle = CookieBannerIEAsset::class;
             }
 

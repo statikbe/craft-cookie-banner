@@ -1,16 +1,16 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/assetbundles/cookiebanner/src/js/ie/a11y.ts":
 /*!*********************************************************!*\
   !*** ./src/assetbundles/cookiebanner/src/js/ie/a11y.ts ***!
   \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "A11yUtils": () => (/* binding */ A11yUtils)
+/* harmony export */   "A11yUtils": function() { return /* binding */ A11yUtils; }
 /* harmony export */ });
 var A11yUtils = /** @class */ (function () {
     function A11yUtils() {
@@ -53,12 +53,12 @@ var A11yUtils = /** @class */ (function () {
 /*!*********************************************************************!*\
   !*** ./src/assetbundles/cookiebanner/src/js/ie/cookie.component.ts ***!
   \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CookieComponent": () => (/* binding */ CookieComponent)
+/* harmony export */   "CookieComponent": function() { return /* binding */ CookieComponent; }
 /* harmony export */ });
 /* harmony import */ var _a11y__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./a11y */ "./src/assetbundles/cookiebanner/src/js/ie/a11y.ts");
 /* harmony import */ var wicg_inert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wicg-inert */ "./node_modules/wicg-inert/dist/inert.js");
@@ -78,8 +78,8 @@ var CookieComponent = /** @class */ (function () {
         this.mainContentBlock = document.getElementById('mainContentBlock');
         var cookieBanner = document.getElementById('cookiebanner');
         if (shouldRun && cookieBanner) {
-            cookieBanner.classList.toggle('hidden');
-            document.getElementById('cookiebanner-overlay').classList.toggle('hidden');
+            cookieBanner.classList.remove('hidden');
+            document.getElementById('cookiebanner-overlay').classList.remove('hidden');
             _a11y__WEBPACK_IMPORTED_MODULE_0__.A11yUtils.keepFocus(cookieBanner);
             cookieBanner.focus();
             var closeBtn = document.querySelector('.js-modal-close-btn');
@@ -1122,49 +1122,49 @@ var CookieComponent = /** @class */ (function () {
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
+/******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
+!function() {
 "use strict";
 /*!****************************************************!*\
   !*** ./src/assetbundles/cookiebanner/src/js/ie.ts ***!
@@ -1178,7 +1178,6 @@ __webpack_require__.r(__webpack_exports__);
 
 new _ie_cookie_component__WEBPACK_IMPORTED_MODULE_0__.CookieComponent();
 
-})();
-
+}();
 /******/ })()
 ;

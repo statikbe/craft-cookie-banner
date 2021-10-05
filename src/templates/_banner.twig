@@ -1,14 +1,14 @@
-<div class="fixed hidden w-full px-4 text-base z-100 sm:max-w-md pull-to-center cookiebanner top-1/2 left-1/2" id="cookiebanner" role="dialog" aria-modal="true" aria-labelledby="cookie_banner_title" tabindex="-1">
-    <div class="p-8 bg-white rounded-lg shadow-md">
-        <h1 class="text-2xl leading-tight sm:text-3xl" id="cookie_banner_title">
+<div class="hidden cookiebanner" id="cookiebanner" role="dialog" aria-modal="true" aria-labelledby="cookie_banner_title" tabindex="-1">
+    <div class="cookiebanner__content">
+        <h1 id="cookie_banner_title">
             {{ "Deze website gebruikt cookies"|t('cookie-banner') }}
         </h1>
-        <div class="mt-2">
+        <div class="cookiebanner__notice">
             {{ 'We gebruiken cookies om je een betere bezoekerservaring te bieden. Klik op akkoord om alle cookies te accepteren of ga naar cookieinstellingen om je voorkeuren te beheren.'|t('cookie-banner') }}
         </div>
-        <div class="mt-5 actions">
-            <a href="#" class="inline-block btn btn--primary js-cookie-accept notranslate">{{ 'Akkoord'|t('cookie-banner') }}</a>
-            <a href="#" class="inline-block ml-3 underline hover:no-underline js-cookie-settings notranslate">{{ 'Cookieinstellingen'|t('cookie-banner') }}</a>
+        <div class="cookiebanner__actions">
+            <a href="#" class="btn btn--primary cookiebanner__accept js-cookie-accept notranslate">{{ 'Akkoord'|t('cookie-banner') }}</a>
+            <a href="#" class="cookiebanner__settings js-cookie-settings notranslate">{{ 'Cookieinstellingen'|t('cookie-banner') }}</a>
         </div>
     </div>
 </div>
