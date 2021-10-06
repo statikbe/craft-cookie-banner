@@ -1,7 +1,8 @@
 # Cookie banner for Craft CMS 3.x
 
-This is an internal Statik.be plugin for use with our Tag Manager tracking solution. 
+This is an internal Statik.be plugin for use with our Tag Manager consent management solution.
 
+⚠️ The plugin  will only render templates out of the box, it won't do anything to prevent tracking without proper configuration.
 
 ## Requirements
 
@@ -38,5 +39,4 @@ For example:
 
 It's adviced to not overwrite the templates just for styling, only for more fundamental and structural changes.
 
-
-
+Both [modal](https://github.com/statikbe/craft-cookie-banner/blob/master/src/templates/_modal.twig) and [banner](https://github.com/statikbe/craft-cookie-banner/blob/master/src/templates/_banner.twig) templates have generic classes that can be used for styling.
