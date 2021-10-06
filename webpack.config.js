@@ -1,15 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 
 //  Plugins
 const globby = require('globby');
 const CopyPlugin = require('copy-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env, options) => {
   const isDevelopment = env.NODE_ENV === 'development';
@@ -22,7 +18,7 @@ module.exports = (env, options) => {
       output: {
         publicPath: '/',
         path: getPublicPath(),
-        filename: isDevelopment ? 'js/cookie.js' : 'js/cookie.[contenthash].js',
+        filename:'js/cookie.js',
       },
       resolve: {
         extensions: ['*', '.tsx', '.ts', '.js', '.json'],
@@ -51,21 +47,6 @@ module.exports = (env, options) => {
             },
           ],
         }),
-        new Dotenv(),
-        ...(!options.watch
-          ? [
-              new HtmlWebpackPlugin({
-                files: {
-                  js: 'js/[name].[contenthash].js',
-                },
-              }),
-            ]
-          : []),
-        new CleanWebpackPlugin({
-          // dry: true,
-          // verbose: true,
-          cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', '!css/inert.css', '!css/ie.**.css', '!js/ie.**.js'],
-        }),
       ],
       optimization: {
         minimizer: [
@@ -92,7 +73,7 @@ module.exports = (env, options) => {
       output: {
         publicPath: '/',
         path: getPublicPath(),
-        filename: isDevelopment ? 'js/cookie-ie.js' : 'js/cookie-ie.[contenthash].js',
+        filename: 'js/cookie-ie.js',
       },
       resolve: {
         extensions: ['*', '.tsx', '.ts', '.js', '.json'],
@@ -131,21 +112,6 @@ module.exports = (env, options) => {
               to: getPublicPath('css/cookie-ie.css'),
             },
           ],
-        }),
-        new Dotenv(),
-        ...(!options.watch
-          ? [
-              new HtmlWebpackPlugin({
-                files: {
-                  js: 'js/[name].[contenthash].js',
-                },
-              }),
-            ]
-          : []),
-        new CleanWebpackPlugin({
-          // dry: true,
-          // verbose: true,
-          cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', '!css/inert.css', '!css/ie.**.css', '!js/ie.**.js'],
         }),
       ],
       optimization: {
