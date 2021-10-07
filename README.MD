@@ -53,3 +53,25 @@ To trigger the settings modal after closing the cookie banner, you can use the f
 ```HTML
 <a href="#" class="js-cookie-settings" role="button">{{ 'Cookie settings'|t }}</a>
 ```
+
+## Listeners
+
+You can listen to the following events:
+
+```
+cookie-banner-opened
+cookie-closed
+cookie-modal-opened
+cookie-prop-performance-disabled
+cookie-prop-performance-enabled
+cookie-prop-marketing-disabled
+cookie-prop-marketing-enabled
+```
+
+Example:
+
+```js
+window.addEventListener('cookie-closed', () => {
+  console.log('cookie-closed');
+});
+```

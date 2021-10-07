@@ -35,6 +35,7 @@ export class CookieComponent {
         closeBtn.classList.add('hidden');
       }
       this.setMainContentInert();
+      this.triggerEvent('cookie-banner-opened');
     }
 
     document.body.addEventListener('click', this.clickListener.bind(this));
@@ -55,6 +56,14 @@ export class CookieComponent {
         }
         this.renderCookieModal();
         this.setMainContentInert();
+      } else if (element.classList.contains('js-cookie-essentials')) {
+        event.preventDefault();
+        this.setCookie(this.consentCookie, '365', false);
+        document.getElementById('cookiebanner').classList.add('hidden');
+        document.getElementById('cookiebanner-overlay').classList.add('hidden');
+        document.getElementById('cookieModal').classList.add('hidden');
+        this.setMainContentInert(false);
+        this.triggerEvent('cookie-closed');
       } else if (element.classList.contains('js-cookie-accept')) {
         event.preventDefault();
         this.setCookie(this.consentCookie, '365', true);
@@ -62,9 +71,7 @@ export class CookieComponent {
         document.getElementById('cookiebanner-overlay').classList.add('hidden');
         document.getElementById('cookieModal').classList.add('hidden');
         this.setMainContentInert(false);
-        const closeevent = document.createEvent('Event');
-        closeevent.initEvent('cookie-closed', true, true);
-        window.dispatchEvent(closeevent);
+        this.triggerEvent('cookie-closed');
       } else if (element.classList.contains('js-modal-close')) {
         event.preventDefault();
         this.closeCookieModal();
@@ -101,9 +108,7 @@ export class CookieComponent {
     cookieModal.classList.toggle('hidden');
     this.setMainContentInert(false);
 
-    const event = document.createEvent('Event');
-    event.initEvent('cookie-closed', true, true);
-    window.dispatchEvent(event);
+    this.triggerEvent('cookie-closed');
   }
 
   private closeCookieModalWithoutSave() {
@@ -112,14 +117,20 @@ export class CookieComponent {
     this.setMainContentInert(false);
   }
 
-  private updateCheckbox(label) {
+  private updateCheckbox(label, init = false) {
     const checkboxvar = document.getElementById(label) as HTMLInputElement;
 
     if ((checkboxvar.defaultChecked && !checkboxvar.checked) || !checkboxvar.checked) {
       checkboxvar.checked = false;
       checkboxvar.defaultChecked = false;
+      if (!init) {
+        this.triggerEvent(`cookie-prop-${label}-disabled`);
+      }
     } else {
       checkboxvar.checked = true;
+      if (!init) {
+        this.triggerEvent(`cookie-prop-${label}-enabled`);
+      }
     }
   }
 
@@ -171,6 +182,7 @@ export class CookieComponent {
     const cookieModal = document.getElementById('cookieModal');
     if (cookieModal) {
       cookieModal.classList.remove('hidden');
+      this.triggerEvent('cookie-modal-opened');
     }
     var cookieOverlay = document.getElementById('cookiebanner-overlay');
     cookieOverlay.classList.remove('hidden');
@@ -182,17 +194,17 @@ export class CookieComponent {
 
     if (cookieGdpr == 'true') {
       (document.getElementById('performance') as HTMLInputElement).checked = true;
-      this.updateCheckbox('performance');
+      this.updateCheckbox('performance', true);
       (document.getElementById('marketing') as HTMLInputElement).checked = true;
-      this.updateCheckbox('marketing');
+      this.updateCheckbox('marketing', true);
     }
     if (cookieGdpr == '2') {
       (document.getElementById('performance') as HTMLInputElement).checked = true;
-      this.updateCheckbox('performance');
+      this.updateCheckbox('performance', true);
     }
     if (cookieGdpr == '3') {
       (document.getElementById('marketing') as HTMLInputElement).checked = true;
-      this.updateCheckbox('marketing');
+      this.updateCheckbox('marketing', true);
     }
   }
 
@@ -205,5 +217,11 @@ export class CookieComponent {
       this.mainContentBlock.removeAttribute('inert');
       document.documentElement.classList.remove('overflow-hidden');
     }
+  }
+
+  private triggerEvent(eventName: string) {
+    const event = document.createEvent('Event');
+    event.initEvent(eventName, true, true);
+    window.dispatchEvent(event);
   }
 }
