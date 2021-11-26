@@ -1,47 +1,56 @@
 <div class="hidden cookie-modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookie_settings_title" tabindex="-1">
     <div class="cookie-modal__content">
         <button class="cookie-modal__close-action js-modal-close-btn notranslate">
-            <span class="sr-only">{{ "Sluit cookie instellingen"|t}}</span>
+            <span class="sr-only">{{ "Sluit cookie instellingen"|t('cookie-banner')}}</span>
         </button>
-        <h1 id="cookie_settings_title">{{ 'Cookieinstellingen'|t }}</h1>
+        <h1 id="cookie_settings_title">{{ 'Cookieinstellingen'|t('cookie-banner') }}</h1>
         <p>
-            {{ 'Onze website houdt drie niveaus van cookies bij. Je kan zelf je voorkeuren op elk moment aanpassen. Meer informatie over wat cookies zijn en welke cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t({cookieLink: craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
+            {{ 'Onze website houdt vier niveaus van cookies bij. Je kan zelf je voorkeuren op elk moment aanpassen. Meer informatie over wat cookies zijn en welke cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('cookie-banner',{cookieLink: craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
         </p>
         <div class="cookie-modal__actions">
-            <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t }}</a>
+            <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t('cookie-banner') }}</a>
         </div>
-        <h2>{{ 'Of pas je voorkeuren aan'|t }}</h2>
+        <h2>{{ 'Of pas je voorkeuren aan'|t('cookie-banner') }}</h2>
         <form>
             <div class="cookie-modal__options">
                 <div class="cookie-modal__checks">
                     <input class="js-cookie-essential" type="checkbox" name="essential" id="essential" disabled="disabled" checked="checked">
-                    <label for="essential">{{ 'Essentiële cookies'|t }}</label>
+                    <label for="essential">{{ 'Essentiële cookies'|t('cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description">
-                    {{ 'zijn noodzakelijke cookies die ervoor zorgen dat de website goed functioneert en dat je voorkeuren (bv. taal, regio) goed worden opgeslagen.'|t }}
+                    {{ 'zijn om puur technische redenen nodig om de website te kunnen bezoeken.'|t('cookie-banner') }}
+                </div>
+            </div>
+            <div class="cookie-modal__options">
+                <div class="cookie-modal__checks">
+                    <input class="js-cookie-essential" type="checkbox" name="essential" id="essential" disabled="disabled" checked="checked">
+                    <label for="essential">{{ 'Functionele cookies'|t('cookie-banner') }}</label>
+                </div>
+                <div class="cookie-modal__description">
+                    {{ 'zijn noodzakelijk voor het gebruiken van de website.'|t('cookie-banner') }}
                 </div>
             </div>
             <div class="cookie-modal__options">
                 <div class="cookie-modal__checks">
                     <input class="js-cookie-performance" type="checkbox" name="CookiePerformance" id="performance" value="2">
-                    <label for="performance">{{ 'Analytische cookies'|t }}</label>
+                    <label for="performance">{{ 'Analytische cookies'|t('cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description">
-                    {{ 'laten ons toe om het gebruik van de website te analyseren en de bezoekerservaring te verbeteren.'|t }}
+                    {{ 'laten ons toe om het gebruik van de website te analyseren en de bezoekerservaring te verbeteren.'|t('cookie-banner') }}
                 </div>
             </div>
             <div class="cookie-modal__options">
                 <div class="cookie-modal__checks">
                     <input class="js-cookie-marketing" type="checkbox" name="CookieMarketing" id="marketing" value="3">
-                    <label for="marketing">{{ 'Marketingcookies'|t }}</label>
+                    <label for="marketing">{{ 'Marketingcookies'|t('cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description">
-                    {{ 'hebben als doel om je ervaring te kunnen personaliseren en je relevante inhoud en aanbiedingen te sturen op deze en andere websites.'|t }}
+                    {{ 'hebben als doel om je ervaring te kunnen personaliseren en je relevante inhoud en aanbiedingen te sturen op deze en andere websites.'|t('cookie-banner') }}
                 </div>
             </div>
         </form>
         <div class="cookie-modal__actions">
-            <button href="#" class="btn btn--primary js-modal-close notranslate">{{ 'Bewaren'|t }}</button>
+            <button href="#" class="btn btn--primary js-modal-close notranslate">{{ 'Mijn keuze bewaren'|t('cookie-banner') }}</button>
         </div>
     </div>
 </div>
