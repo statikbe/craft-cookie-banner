@@ -16,7 +16,7 @@ class CookieBanner extends Plugin
         parent::init();
 
 
-        if (\Craft::$app->getPlugins()->isPluginEnabled('cookie-banner')) {
+        if (\Craft::$app->getPlugins()->isPluginEnabled('translate')) {
             Event::on(
                 Translate::class,
                 Translate::EVENT_REGISTER_PLUGIN_TRANSLATION,
