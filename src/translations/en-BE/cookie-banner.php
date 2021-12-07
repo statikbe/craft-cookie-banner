@@ -1,22 +1,21 @@
 <?php
 
-return [
+return array (
     'Deze website gebruikt cookies' => 'This website uses cookies',
-    'Door op “Alle cookies aanvaarden” te klikken ga je akkoord met het opslaan van cookies om je een betere gebruikerservaring te bieden en websitegebruik te analyseren. Noodzakelijke cookies zijn essentieel om de website goed te doen functioneren en kan je niet weigeren. Door op "Cookie-instellingen" te klikken kan je je voorkeuren beheren.' => 'By clicking "Accept all cookies" you agree to the usage of cookies to provide you with a better user experience and to analyse website use. Necessary cookies are essential for the website to function properly and you cannot refuse them. By clicking on "Cookie settings" you can manage your preferences.',
+    'Door op "Alle cookies aanvaarden" te klikken ga je akkoord met het opslaan van onze cookies op je computer. Zo kunnen we een betere gebruikservaring bieden, en het laat ons toe om het gebruik van de website te analyseren. Door op ‘Je voorkeuren aanpassen’ te klikken kan je kiezen welke cookies je toelaat. Enkel de essentiële cookies zijn noodzakelijk voor de goede werking van de website en kan je niet weigeren' => "By choosing ‘Accept all cookies’ you agree to the use of cookies to help us provide you with a better user experience and to anonymously analyse website usage. By clicking ‘Adjust your preferences' you can choose which cookies to allow. Only the essential cookies are necessary for the proper functioning of our website and cannot be refused",
     'Alle cookies aanvaarden' => 'Accept all cookies',
-    'Noodzakelijke cookies aanvaarden' => 'Accepting necessary cookies',
-    'Cookieinstellingen' => 'Cookie settings',
-    // Modal
+    'Enkel essentiële cookies aanvaarden' => 'Accept only necessary cookies',
+    'Je voorkeuren aanpassen' => 'Adjust your preferences',
+    'Cookie-instellingen' => 'Cookie settings',
     'Sluit cookie instellingen' => 'Close cookie settings',
-    'Onze website houdt vier niveaus van cookies bij. Je kan zelf je voorkeuren op elk moment aanpassen. Meer informatie over wat cookies zijn en welke cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.' => 'Our website keeps four levels of cookies. You can change your preferences at any time. You can find out more about what cookies are and which cookies we collect in our <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookie policy</a>.',
-    'Of pas je voorkeuren aan' => 'Or adjust your preferences',
+    'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.' => 'Our website stores four types of cookies. At any time you can choose which cookies you accept and which you refuse. You can read more about what cookies are and what types of cookies we store in our  <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">Cookie Policy</a>.',
     'Essentiële cookies' => 'Essential cookies',
-    'zijn om puur technische redenen nodig om de website te kunnen bezoeken.' => 'are needed for purely technical reasons to be able to visit the website.',
+    'zijn om technische redenen noodzakelijk voor de goede werking. Zonder deze cookies zou het kunnen dat de website niet naar behoren functioneert.' => "are necessary for technical reasons. Without them, this website may not function properly.",
     'Functionele cookies' => 'Functional cookies',
-    'zijn noodzakelijk voor het gebruiken van de website.' => 'are necessary for the use of the website.',
+    'zijn noodzakelijk voor bepaalde functies op de website. Zonder deze cookies kunnen sommige onderdelen onbruikbaar worden.' => "are necessary for specific functionality on the website. Without them, some features may be disabled.",
     'Analytische cookies' => 'Analytical cookies',
-    'laten ons toe om het gebruik van de website te analyseren en de bezoekerservaring te verbeteren.' => 'allow us to analyse the use of the website and to improve the visitor experience.',
+    'laten ons toe om het gebruik van de website anoniem te analyseren en de gebruikservaring te verbeteren.' => "allow us to anonymously analyse the usage of the website and to improve the visitor experience. These cookies are optional.",
     'Marketingcookies' => 'Marketing cookies',
-    'hebben als doel om je ervaring te kunnen personaliseren en je relevante inhoud en aanbiedingen te sturen op deze en andere websites.' => 'aim to personalise your experience and to send you relevant content and offers on this and other websites.',
+    'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.' => "aim to personalise the user experience and to show relevant content and offers on this and other websites. These cookies are optional.",
     'Mijn keuze bewaren' => 'Save my selection',
-];
+);

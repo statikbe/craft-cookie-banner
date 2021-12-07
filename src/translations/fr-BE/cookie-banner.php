@@ -1,23 +1,21 @@
 <?php
 
-return [
-    // Banner
-    "Deze website gebruikt cookies" => "Ce site web utilise des cookies",
-    'Door op “Alle cookies aanvaarden” te klikken ga je akkoord met het opslaan van cookies om je een betere gebruikerservaring te bieden en websitegebruik te analyseren. Noodzakelijke cookies zijn essentieel om de website goed te doen functioneren en kan je niet weigeren. Door op "Cookie-instellingen" te klikken kan je je voorkeuren beheren.' => "En cliquant sur 'Accepter tous les cookies', vous acceptez le stockage des cookies afin de vous offrir une meilleure expérience utilisateur et d'analyser l'utilisation du site web. Les cookies nécessaires sont indispensables au bon fonctionnement du site web et vous ne pouvez pas les refuser. En cliquant sur 'Paramètres des cookies', vous pouvez gérer vos préférences.",
+return array (
+    'Deze website gebruikt cookies' => 'Ce site web utilise des cookies',
+    'Door op "Alle cookies aanvaarden" te klikken ga je akkoord met het opslaan van onze cookies op je computer. Zo kunnen we een betere gebruikservaring bieden, en het laat ons toe om het gebruik van de website te analyseren. Door op ‘Je voorkeuren aanpassen’ te klikken kan je kiezen welke cookies je toelaat. Enkel de essentiële cookies zijn noodzakelijk voor de goede werking van de website en kan je niet weigeren' => "En cliquant sur 'Accepter tous les cookies', vous acceptez que nous stockions des cookies sur votre ordinateur. Cela nous permet d'offrir une meilleure expérience utilisateur et d'analyser l'utilisation du site web de manière anonyme. En cliquant sur 'Gérer vos préférences', vous pouvez choisir les cookies que vous autorisez. Seuls les cookies essentiels sont nécessaires au bon fonctionnement du site web et ne peuvent être refusés",
     'Alle cookies aanvaarden' => 'Accepter tous les cookies',
-    'Noodzakelijke cookies aanvaarden' => 'Accepter les cookies nécessaires',
-    "Cookieinstellingen" => "Paramètres des cookies",
-    // Modal
-    'Sluit cookie instellingen' => 'Fermer les paramètres des cookies',
-    'Onze website houdt vier niveaus van cookies bij. Je kan zelf je voorkeuren op elk moment aanpassen. Meer informatie over wat cookies zijn en welke cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.' => 'Notre site web conserve quatre niveaux de cookies. Vous pouvez modifier vos préférences à tout moment. Vous trouverez davantage d’informations sur les cookies et la manière dont nous les utilisons dans notre <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">politique en matière de cookies</a>.',
-    'Of pas je voorkeuren aan' => 'Ou ajustez vos préférences',
-    "Essentiële cookies" => "Cookies essentiels ",
-    'zijn om puur technische redenen nodig om de website te kunnen bezoeken.' => 'sont nécessaires pour des raisons purement techniques afin de pouvoir visiter le site web.',
+    'Enkel essentiële cookies aanvaarden' => 'Accepter que les cookies essentiels',
+    'Je voorkeuren aanpassen' => 'Gérer vos préférences',
+    'Cookie-instellingen' => 'Paramètres des cookies',
+    'Sluit cookie instellingen' => 'Fermez paramètres des cookies',
+    'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.' => 'Notre site web stocke quatre types de cookies. À tout moment, vous pouvez choisir celles que vous acceptez et celles que vous refusez. Vous pouvez en savoir plus sur ce que sont les cookies et sur les types de cookies que nous stockons dans notre <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">politique en matière de cookies</a>.',
+    'Essentiële cookies' => 'Cookies essentiels',
+    'zijn om technische redenen noodzakelijk voor de goede werking. Zonder deze cookies zou het kunnen dat de website niet naar behoren functioneert.' => "Ces cookies sont nécessaires pour des raisons techniques. Sans ces cookies, le site web peut ne pas fonctionner correctement.",
     'Functionele cookies' => 'Cookies fonctionnels',
-    "zijn noodzakelijk voor het gebruiken van de website." => "sont nécessaires à l'utilisation du site web.",
-    "Analytische cookies" => "Cookies analytiques",
-    'laten ons toe om het gebruik van de website te analyseren en de bezoekerservaring te verbeteren.' => "nous permettre d'analyser l'utilisation du site web et d'améliorer l'expérience des visiteurs.",
-    "Marketingcookies" => "Cookies marketing",
-    'hebben als doel om je ervaring te kunnen personaliseren en je relevante inhoud en aanbiedingen te sturen op deze en andere websites.' => "afin de personnaliser votre expérience et de vous envoyer des contenus et des offres pertinents sur ce site et d'autres sites web.",
+    'zijn noodzakelijk voor bepaalde functies op de website. Zonder deze cookies kunnen sommige onderdelen onbruikbaar worden.' => "Ces cookies sont nécessaires pour certaines fonctions du site web. Sans ces cookies, certaines fonctionnalités peuvent devenir inutilisables.",
+    'Analytische cookies' => 'Cookies analytiques',
+    'laten ons toe om het gebruik van de website anoniem te analyseren en de gebruikservaring te verbeteren.' => "Ces cookies nous permettent d'analyser l'utilisation du site web et d'améliorer l'expérience des visiteurs.",
+    'Marketingcookies' => 'Cookies marketing',
+    'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.' => "L'objectif de ces cookies est de personnaliser l'expérience de l'utilisateur et d'afficher des contenus et des offres pertinents sur ce site et d'autres sites web",
     'Mijn keuze bewaren' => 'Sauvegarder mon choix',
-];
+);
