@@ -32,39 +32,40 @@ class CookieBannerVariable
             $this->supportIE = $settings['supportIE'];
         }
 
-        if (!isset($settings['showCookieBanner']) || $settings['showCookieBanner']) {
-            try {
-                
-                if (isset($settings['modal']) && !empty($settings['modal'])) {
-                    $this->modal = ['template' => $settings['modal'], 'mode' => View::TEMPLATE_MODE_SITE];
-                }
-                echo \Craft::$app->getView()->renderTemplate($this->modal['template'], [], $this->modal['mode']);
-                
-                
+        try {
+            
+            if (isset($settings['modal']) && !empty($settings['modal'])) {
+                $this->modal = ['template' => $settings['modal'], 'mode' => View::TEMPLATE_MODE_SITE];
+            }
+            echo \Craft::$app->getView()->renderTemplate($this->modal['template'], [], $this->modal['mode']);
+            
+            
+            if(!isset($settings['showCookieBanner']) || $settings['showCookieBanner']){
                 if (isset($settings['banner']) && !empty($settings['banner'])) {
                     $this->banner = ['template' => $settings['banner'], 'mode' => View::TEMPLATE_MODE_SITE];
                 }
                 echo \Craft::$app->getView()->renderTemplate($this->banner['template'], [], $this->banner['mode']);
-                
-                
-                if (isset($settings['overlay']) && !empty($settings['overlay'])) {
-                    echo \Craft::$app->getView()->renderString($settings['overlay'], [], View::TEMPLATE_MODE_SITE);
-                } else {
-                    echo \Craft::$app->getView()->renderTemplate($this->overlay, [], View::TEMPLATE_MODE_CP);
-                }
-                
-                
-                if ($this->supportIE && $this->isBot("/Trident/i")) {
-                    $this->assetBundle = CookieBannerIEAsset::class;
-                }
-                
-                \Craft::$app->getView()->registerAssetBundle($this->assetBundle, View::POS_END);
-                
-                
-            } catch (\Exception $e) {
-                \Craft::error($e->getMessage(), 'cookie-banner');
-                return false;
             }
+            
+            
+            
+            if (isset($settings['overlay']) && !empty($settings['overlay'])) {
+                echo \Craft::$app->getView()->renderString($settings['overlay'], [], View::TEMPLATE_MODE_SITE);
+            } else {
+                echo \Craft::$app->getView()->renderTemplate($this->overlay, [], View::TEMPLATE_MODE_CP);
+            }
+            
+            
+            if ($this->supportIE && $this->isBot("/Trident/i")) {
+                $this->assetBundle = CookieBannerIEAsset::class;
+            }
+            
+            \Craft::$app->getView()->registerAssetBundle($this->assetBundle, View::POS_END);
+                
+            
+        } catch (\Exception $e) {
+            \Craft::error($e->getMessage(), 'cookie-banner');
+            return false;
         }
 
     }
