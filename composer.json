@@ -1,45 +1,45 @@
 {
-    "name": "statikbe/craft-cookie-banner",
-    "description": "Cookie banner and modal package",
-    "type": "craft-plugin",
-    "version": "1.0.2",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "craft-plugin",
-        "cookies",
-        "gdpr"
-    ],
-    "support": {
-        "docs": "https://github.com/statikbe/craft-cookie-banner/blob/master/README.md",
-        "issues": "https://github.com/statikbe/craft-cookie-banner/issues"
+  "name": "statikbe/craft-cookie-banner",
+  "description": "Cookie banner and modal package",
+  "type": "craft-plugin",
+  "version": "1.0.5",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "cookies",
+    "gdpr"
+  ],
+  "support": {
+    "docs": "https://github.com/statikbe/craft-cookie-banner/blob/master/README.md",
+    "issues": "https://github.com/statikbe/craft-cookie-banner/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Statik",
+      "homepage": "https://www.statik.be"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Statik",
-            "homepage": "https://www.statik.be"
-        },
-        {
-            "name": "Jan Henckens",
-            "homepage": "https://github.com/janhenckens/"
-        }
-    ],
-    "require": {
-        "craftcms/cms": "^3.0.0"
-    },
-    "autoload": {
-        "psr-4": {
-          "statikbe\\cookiebanner\\": "src/"
-        }
-    },
-    "extra": {
-        "name": "Cookie Banner",
-        "handle": "cookie-banner",
-        "schemaVersion": "1.0.0",
-        "hasSettings": false,
-        "developer": "Statik",
-        "class": "statikbe\\cookiebanner\\CookieBanner"
+    {
+      "name": "Jan Henckens",
+      "homepage": "https://github.com/janhenckens/"
     }
+  ],
+  "require": {
+    "craftcms/cms": "^3.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "statikbe\\cookiebanner\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Cookie Banner",
+    "handle": "cookie-banner",
+    "schemaVersion": "1.0.0",
+    "hasSettings": false,
+    "developer": "Statik",
+    "class": "statikbe\\cookiebanner\\CookieBanner"
+  }
 }
