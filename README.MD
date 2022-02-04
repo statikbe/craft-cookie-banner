@@ -39,8 +39,9 @@ For example:
 {{ craft.cookieBanner.render({
         modal: '_site/_snippet/_cookie/_modal',
         banner: '_site/_snippet/_cookie/_banner',
-        overlay: '<div class="fixed inset-0 hidden bg-black opacity-80 z-99" id="cookiebanner-overlay"></div>'
-        supportIE: true
+        overlay: '<div class="fixed inset-0 hidden bg-black opacity-80 z-99" id="cookiebanner-overlay"></div>',
+        supportIE: true,
+        showCookieBanner: entry.type.handle != 'cookiePolicy'
 }) }}
 ```
 
