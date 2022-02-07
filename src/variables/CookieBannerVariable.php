@@ -6,6 +6,7 @@ namespace statikbe\cookiebanner\variables;
 use craft\web\View;
 use statikbe\cookiebanner\assetbundles\cookiebanner\CookieBannerAsset;
 use statikbe\cookiebanner\assetbundles\cookiebanner\CookieBannerIEAsset;
+use craft\elements\Entry;
 
 class CookieBannerVariable
 {
