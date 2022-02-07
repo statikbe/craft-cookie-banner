@@ -32,6 +32,7 @@ You can also pass an array of options:
 - banner: path to the template for the banner
 - overlay: HTML string with styling that will you use as overlay behind the banner
 - supportIE: wether or not the Javascript used should be compiled for ES6 or ES5 (defaults to false so using ES6)
+- cookiePage: the entry where the cookie policy content is defined. This is used on the modal template to show the possible settings.
 
 For example:
 
@@ -41,6 +42,7 @@ For example:
         banner: '_site/_snippet/_cookie/_banner',
         overlay: '<div class="fixed inset-0 hidden bg-black opacity-80 z-99" id="cookiebanner-overlay"></div>',
         supportIE: true,
+        cookiePage: craft.entries.section('cookiePolicy').one(),
         showCookieBanner: (entry.type is defined and entry.type.handle != 'cookiePolicy')
 }) }}
 ```

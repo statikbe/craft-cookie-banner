@@ -5,7 +5,7 @@
         </button>
         <h1 id="cookie_settings_title">{{ 'Cookie-instellingen'|t('cookie-banner') }}</h1>
         <p>
-            {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('cookie-banner',{cookieLink: craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
+            {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('cookie-banner',{cookieLink: cookiePage.getUrl() ?? craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
         </p>
         <div class="cookie-modal__actions">
             <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t('cookie-banner') }}</a>
