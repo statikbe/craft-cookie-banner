@@ -20,6 +20,8 @@ class CookieBannerVariable
     ];
     public $overlay = 'cookie-banner/_overlay';
 
+    public $cookiePage;
+
     public $assetBundle = CookieBannerAsset::class;
 
     public function render($settings = [])
@@ -32,12 +34,18 @@ class CookieBannerVariable
             $this->supportIE = $settings['supportIE'];
         }
 
+        if (isset($settings['cookiePage']) && !empty($settings['cookiePage'])) {
+            $this->cookiePage = $settings['cookiePage'];
+        } else {
+            $this->cookiePage = Entry::find()->section('cookiePolicy')->one();
+        }
+
         try {
             
             if (isset($settings['modal']) && !empty($settings['modal'])) {
                 $this->modal = ['template' => $settings['modal'], 'mode' => View::TEMPLATE_MODE_SITE];
             }
-            echo \Craft::$app->getView()->renderTemplate($this->modal['template'], [], $this->modal['mode']);
+            echo \Craft::$app->getView()->renderTemplate($this->modal['template'], ['cookiePage' => $this->cookiePage], $this->modal['mode']);
             
             
             if(!isset($settings['showCookieBanner']) || $settings['showCookieBanner']){
