@@ -1,5 +1,5 @@
-import { A11yUtils } from '../utils/a11y';
-import 'wicg-inert';
+import { A11yUtils } from "../utils/a11y";
+import "wicg-inert";
 
 declare global {
   interface Window {
@@ -8,37 +8,61 @@ declare global {
 }
 
 export class CookieComponent {
-  private consentCookie = '__cookie_consent';
+  private consentCookie = "__cookie_consent";
+  private cookieBlocked = "__cookie_blocked";
   private mainContentBlock: HTMLElement;
+  private cookieModal: HTMLElement;
 
   constructor() {
     let shouldRun = false;
 
-    if (/bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.userAgent)) {
+    if (
+      /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(
+        navigator.userAgent
+      )
+    ) {
       shouldRun = false;
     } else {
       shouldRun = this.getCookie(this.consentCookie) ? false : true;
     }
 
-    this.mainContentBlock = document.getElementById('mainContentBlock');
+    this.mainContentBlock = document.getElementById("mainContentBlock");
 
-    const cookieBanner = document.getElementById('cookiebanner');
+    const cookieBanner = document.getElementById("cookiebanner");
 
     if (shouldRun && cookieBanner) {
-      cookieBanner.classList.remove('hidden');
-      document.getElementById('cookiebanner-overlay').classList.remove('hidden');
+      cookieBanner.classList.remove("hidden");
+      const overlay = document.getElementById("cookiebanner-overlay");
+      overlay.classList.remove("hidden");
+
       A11yUtils.keepFocus(cookieBanner);
       cookieBanner.focus();
-      const closeBtn = document.querySelector('.js-modal-close-btn') as HTMLElement;
+      const closeBtn = document.querySelector(
+        ".js-modal-close-btn"
+      ) as HTMLElement;
       if (closeBtn) {
-        closeBtn.setAttribute('disabled', 'true');
-        closeBtn.classList.add('hidden');
+        closeBtn.setAttribute("disabled", "true");
+        closeBtn.classList.add("hidden");
       }
       this.setMainContentInert();
-      this.triggerEvent('cookie-banner-opened');
+      this.triggerEvent("cookie-banner-opened");
+
+      setTimeout(() => {
+        if (
+          window.getComputedStyle(overlay).display === "none" ||
+          window.getComputedStyle(cookieBanner).display === "none"
+        ) {
+          console.info("A browser plugin blocked the cookie banner");
+          this.setMainContentInert(false);
+          this.setCookie(this.consentCookie, "365", false);
+          this.setCookie(this.cookieBlocked, "365", true);
+          this.triggerEvent("cookie-banner-blocked");
+          this.triggerEvent("cookie-closed");
+        }
+      }, 500);
     }
 
-    document.body.addEventListener('click', this.clickListener.bind(this));
+    document.body.addEventListener("click", this.clickListener.bind(this));
   }
 
   private clickListener(event) {
@@ -48,81 +72,102 @@ export class CookieComponent {
     }
 
     if (element.classList) {
-      if (element.classList.contains('js-cookie-settings')) {
+      if (element.classList.contains("js-cookie-settings")) {
         event.preventDefault();
-        const cookieBanner = document.getElementById('cookiebanner');
+        const cookieBanner = document.getElementById("cookiebanner");
         if (cookieBanner) {
-          cookieBanner.classList.add('hidden');
+          cookieBanner.classList.add("hidden");
         }
         this.renderCookieModal();
-        this.setMainContentInert();
-      } else if (element.classList.contains('js-cookie-essentials')) {
+        setTimeout(() => {
+          if (window.getComputedStyle(this.cookieModal).display == "none") {
+            alert("Cookie settings modal is blocked by a browser plugin");
+          } else {
+            this.setMainContentInert();
+          }
+        }, 500);
+      } else if (element.classList.contains("js-cookie-essentials")) {
         event.preventDefault();
-        this.setCookie(this.consentCookie, '365', false);
-        document.getElementById('cookiebanner').classList.add('hidden');
-        document.getElementById('cookiebanner-overlay').classList.add('hidden');
-        document.getElementById('cookieModal').classList.add('hidden');
+        this.setCookie(this.consentCookie, "365", false);
+        document.getElementById("cookiebanner").classList.add("hidden");
+        document.getElementById("cookiebanner-overlay").classList.add("hidden");
+        document.getElementById("cookieModal").classList.add("hidden");
         this.setMainContentInert(false);
-        this.triggerEvent('cookie-closed');
-      } else if (element.classList.contains('js-cookie-accept')) {
+        this.triggerEvent("cookie-closed");
+      } else if (element.classList.contains("js-cookie-accept")) {
         event.preventDefault();
-        this.setCookie(this.consentCookie, '365', true);
-        document.getElementById('cookiebanner').classList.add('hidden');
-        document.getElementById('cookiebanner-overlay').classList.add('hidden');
-        document.getElementById('cookieModal').classList.add('hidden');
+        this.setCookie(this.consentCookie, "365", true);
+        document.getElementById("cookiebanner").classList.add("hidden");
+        document.getElementById("cookiebanner-overlay").classList.add("hidden");
+        document.getElementById("cookieModal").classList.add("hidden");
         this.setMainContentInert(false);
-        this.triggerEvent('cookie-closed');
-      } else if (element.classList.contains('js-modal-close')) {
+        this.triggerEvent("cookie-closed");
+      } else if (element.classList.contains("js-modal-close")) {
         event.preventDefault();
         this.closeCookieModal();
-        document.getElementById('cookiebanner-overlay').classList.add('hidden');
-      } else if (element.classList.contains('js-modal-close-btn')) {
+        document.getElementById("cookiebanner-overlay").classList.add("hidden");
+      } else if (element.classList.contains("js-modal-close-btn")) {
         event.preventDefault();
         this.closeCookieModalWithoutSave();
-        document.getElementById('cookiebanner-overlay').classList.add('hidden');
-      } else if (element.classList.contains('js-cookie-performance')) {
-        this.updateCheckbox('performance');
-      } else if (element.classList.contains('js-cookie-marketing')) {
-        this.updateCheckbox('marketing');
+        document.getElementById("cookiebanner-overlay").classList.add("hidden");
+      } else if (element.classList.contains("js-cookie-performance")) {
+        this.updateCheckbox("performance");
+      } else if (element.classList.contains("js-cookie-marketing")) {
+        this.updateCheckbox("marketing");
       }
     }
   }
 
   private closeCookieModal() {
-    if (this.isCookieChecked('performance') == true && this.isCookieChecked('marketing') == true) {
-      this.setCookie(this.consentCookie, '365', true);
+    if (
+      this.isCookieChecked("performance") == true &&
+      this.isCookieChecked("marketing") == true
+    ) {
+      this.setCookie(this.consentCookie, "365", true);
     }
-    if (this.isCookieChecked('performance') == true && this.isCookieChecked('marketing') == false) {
-      this.setCookie(this.consentCookie, '365', 2);
-    }
-
-    if (this.isCookieChecked('marketing') == true && this.isCookieChecked('performance') == false) {
-      this.setCookie(this.consentCookie, '365', 3);
-    }
-
-    if (this.isCookieChecked('marketing') == false && this.isCookieChecked('performance') == false) {
-      this.setCookie(this.consentCookie, '365', false);
+    if (
+      this.isCookieChecked("performance") == true &&
+      this.isCookieChecked("marketing") == false
+    ) {
+      this.setCookie(this.consentCookie, "365", 2);
     }
 
-    const cookieModal = document.getElementById('cookieModal');
-    cookieModal.classList.toggle('hidden');
+    if (
+      this.isCookieChecked("marketing") == true &&
+      this.isCookieChecked("performance") == false
+    ) {
+      this.setCookie(this.consentCookie, "365", 3);
+    }
+
+    if (
+      this.isCookieChecked("marketing") == false &&
+      this.isCookieChecked("performance") == false
+    ) {
+      this.setCookie(this.consentCookie, "365", false);
+    }
+
+    const cookieModal = document.getElementById("cookieModal");
+    cookieModal.classList.toggle("hidden");
     this.setMainContentInert(false);
 
-    this.triggerEvent('cookie-closed');
+    this.triggerEvent("cookie-closed");
   }
 
   private closeCookieModalWithoutSave() {
-    const cookieModal = document.getElementById('cookieModal');
-    cookieModal.classList.toggle('hidden');
+    const cookieModal = document.getElementById("cookieModal");
+    cookieModal.classList.toggle("hidden");
     this.setMainContentInert(false);
 
-    this.triggerEvent('cookie-closed');
+    this.triggerEvent("cookie-closed");
   }
 
   private updateCheckbox(label, init = false) {
     const checkboxvar = document.getElementById(label) as HTMLInputElement;
 
-    if ((checkboxvar.defaultChecked && !checkboxvar.checked) || !checkboxvar.checked) {
+    if (
+      (checkboxvar.defaultChecked && !checkboxvar.checked) ||
+      !checkboxvar.checked
+    ) {
       checkboxvar.checked = false;
       checkboxvar.defaultChecked = false;
       if (!init) {
@@ -153,9 +198,11 @@ export class CookieComponent {
       decodeURIComponent(
         document.cookie.replace(
           new RegExp(
-            '(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'
+            "(?:(?:^|.*;)\\s*" +
+              encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") +
+              "\\s*\\=\\s*([^;]*).*$)|^.*$"
           ),
-          '$1'
+          "$1"
         )
       ) || null
     );
@@ -168,56 +215,62 @@ export class CookieComponent {
     }
     let expires = date.toUTCString();
     document.cookie =
-      encodeURIComponent(key) + '=' + encodeURIComponent(value) + (expires ? '; expires=' + expires : '') + '; path=/';
+      encodeURIComponent(key) +
+      "=" +
+      encodeURIComponent(value) +
+      (expires ? "; expires=" + expires : "") +
+      "; path=/";
 
     if (window.dataLayer) {
-      window.dataLayer.push({ event: 'cookie_refresh' });
+      window.dataLayer.push({ event: "cookie_refresh" });
     }
   }
 
   private renderCookieModal() {
     //check if the modal was already opened before
-    const cookieBanner = document.getElementById('cookiebanner');
+    const cookieBanner = document.getElementById("cookiebanner");
     if (cookieBanner) {
-      cookieBanner.classList.add('hidden');
+      cookieBanner.classList.add("hidden");
     }
-    const cookieModal = document.getElementById('cookieModal');
-    if (cookieModal) {
-      cookieModal.classList.remove('hidden');
-      this.triggerEvent('cookie-modal-opened');
+    this.cookieModal = document.getElementById("cookieModal");
+    if (this.cookieModal) {
+      this.cookieModal.classList.remove("hidden");
+      this.triggerEvent("cookie-modal-opened");
     }
-    var cookieOverlay = document.getElementById('cookiebanner-overlay');
-    cookieOverlay.classList.remove('hidden');
+    var cookieOverlay = document.getElementById("cookiebanner-overlay");
+    cookieOverlay.classList.remove("hidden");
 
-    A11yUtils.keepFocus(cookieModal);
-    cookieModal.focus();
+    A11yUtils.keepFocus(this.cookieModal);
+    this.cookieModal.focus();
 
     const cookieGdpr = this.getCookie(this.consentCookie);
 
-    if (cookieGdpr == 'true') {
-      (document.getElementById('performance') as HTMLInputElement).checked = true;
-      this.updateCheckbox('performance', true);
-      (document.getElementById('marketing') as HTMLInputElement).checked = true;
-      this.updateCheckbox('marketing', true);
+    if (cookieGdpr == "true") {
+      (document.getElementById("performance") as HTMLInputElement).checked =
+        true;
+      this.updateCheckbox("performance", true);
+      (document.getElementById("marketing") as HTMLInputElement).checked = true;
+      this.updateCheckbox("marketing", true);
     }
-    if (cookieGdpr == '2') {
-      (document.getElementById('performance') as HTMLInputElement).checked = true;
-      this.updateCheckbox('performance', true);
+    if (cookieGdpr == "2") {
+      (document.getElementById("performance") as HTMLInputElement).checked =
+        true;
+      this.updateCheckbox("performance", true);
     }
-    if (cookieGdpr == '3') {
-      (document.getElementById('marketing') as HTMLInputElement).checked = true;
-      this.updateCheckbox('marketing', true);
+    if (cookieGdpr == "3") {
+      (document.getElementById("marketing") as HTMLInputElement).checked = true;
+      this.updateCheckbox("marketing", true);
     }
   }
 
   private setMainContentInert(set = true) {
     if (this.mainContentBlock && set) {
-      this.mainContentBlock.setAttribute('inert', '');
-      document.documentElement.classList.add('overflow-hidden');
+      this.mainContentBlock.setAttribute("inert", "");
+      document.documentElement.classList.add("overflow-hidden");
     }
     if (this.mainContentBlock && !set) {
-      this.mainContentBlock.removeAttribute('inert');
-      document.documentElement.classList.remove('overflow-hidden');
+      this.mainContentBlock.removeAttribute("inert");
+      document.documentElement.classList.remove("overflow-hidden");
     }
   }
 
