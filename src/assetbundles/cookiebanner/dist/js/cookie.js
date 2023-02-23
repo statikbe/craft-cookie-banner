@@ -192,6 +192,9 @@ class CookieComponent {
         if (window.dataLayer) {
             window.dataLayer.push({ event: "cookie_refresh" });
         }
+        if (window._mtm) {
+            window._mtm.push({ event: 'cookie_refresh' });
+        }
     }
     renderCookieModal() {
         //check if the modal was already opened before
