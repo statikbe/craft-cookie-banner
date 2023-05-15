@@ -26,8 +26,8 @@
             </div>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
-                    <input class="js-cookie-essential mr-4" type="checkbox" name="essential" id="functional" disabled="disabled" checked="checked">
-                    <label for="essential">{{ 'Functionele cookies'|t('cookie-banner') }}</label>
+                    <input class="js-cookie-essential mr-4" type="checkbox" name="functional" id="functional" disabled="disabled" checked="checked">
+                    <label for="functional">{{ 'Functionele cookies'|t('cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
                     {{ 'zijn noodzakelijk voor bepaalde functies op de website. Zonder deze cookies kunnen sommige onderdelen onbruikbaar worden.'|t('cookie-banner') }}
@@ -51,9 +51,9 @@
                     {{ 'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.'|t('cookie-banner') }}
                 </div>
             </div>
+            <div class="cookie-modal__actions">
+                <button href="#" class="btn btn--primary js-modal-close notranslate">{{ 'Mijn keuze bewaren'|t('cookie-banner') }}</button>
+            </div>
         </form>
-        <div class="cookie-modal__actions">
-            <button href="#" class="btn btn--primary js-modal-close notranslate">{{ 'Mijn keuze bewaren'|t('cookie-banner') }}</button>
-        </div>
     </div>
 </div>
