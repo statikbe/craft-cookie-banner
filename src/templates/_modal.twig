@@ -1,6 +1,6 @@
 <div class="hidden cookie-modal fixed w-full max-h-screen p-4 overflow-y-auto z-100 sm:max-w-modal top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookie_settings_title" tabindex="-1">
     <div class="cookie-modal__content relative p-6 text-sm bg-white rounded-lg shadow-md">
-        <button class="cookie-modal__close-action absolute top-0 right-0 mt-6 mr-8 js-modal-close-btn notranslate">
+        <button type="button" class="cookie-modal__close-action absolute top-0 right-0 mt-6 mr-8 js-modal-close-btn notranslate">
             <svg xmlns="http://www.w3.org/2000/svg" class="cookie-modal__close-icon w-5 h-5 pointer-events-none" width="48" height="48" viewBox="0 0 48 48"><path d="M38 12.83L35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"/></svg>
             <span class="sr-only">
                 {{ "Sluit cookie instellingen"|t('cookie-banner')}}
@@ -17,7 +17,7 @@
         <form>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
-                    <input class="js-cookie-essential mr-4" type="checkbox" name="essential" id="essential" disabled="disabled" checked="checked">
+                    <input class="js-cookie-essential mr-4" type="checkbox" name="essential" id="essential" disabled checked>
                     <label for="essential">{{ 'Essentiële cookies'|t('cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
@@ -26,7 +26,7 @@
             </div>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
-                    <input class="js-cookie-essential mr-4" type="checkbox" name="functional" id="functional" disabled="disabled" checked="checked">
+                    <input class="js-cookie-essential mr-4" type="checkbox" name="functional" id="functional" disabled checked>
                     <label for="functional">{{ 'Functionele cookies'|t('cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
