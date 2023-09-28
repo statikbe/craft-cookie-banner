@@ -4,6 +4,7 @@ import "wicg-inert";
 declare global {
   interface Window {
     dataLayer: any;
+    _mtm: any;
   }
 }
 
@@ -223,6 +224,10 @@ export class CookieComponent {
 
     if (window.dataLayer) {
       window.dataLayer.push({ event: "cookie_refresh" });
+    }
+
+    if (window._mtm) {
+      window._mtm.push({ event: 'cookie_refresh' });
     }
   }
 
