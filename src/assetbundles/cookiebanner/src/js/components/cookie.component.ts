@@ -63,7 +63,50 @@ export class CookieComponent {
       }, 500);
     }
 
+    document.body.addEventListener("click", this.trackingListener.bind(this));
     document.body.addEventListener("click", this.clickListener.bind(this));
+  }
+
+    private trackingListener(event: Event) {
+      var element = event.target as HTMLElement;
+      if (!element) {
+          return;
+      }
+
+      if (element.classList.contains("js-cookie-settings")) {
+          event.preventDefault();
+          this.cookieRatio('settings');
+      } else if (element.classList.contains("js-cookie-accept")) {
+          event.preventDefault();
+          this.cookieRatio('accept');
+      } else if(element.classList.contains('js-cookie-essentials')){
+          this.cookieRatio('deny');
+      }
+    }
+
+    private cookieRatio(choice: string) {
+
+       let promise = new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          const url = "cookie-tracking/add-choice-to-database";
+          var params = "response=" + choice;
+
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                  // console.log("Click count updated successfully");
+              }
+          };
+
+          xhr.onerror = function () {
+              // console.error("Network error");
+              reject("Network error");
+          };
+
+          xhr.send(params);
+      });
   }
 
   private clickListener(event) {
