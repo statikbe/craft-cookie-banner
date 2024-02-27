@@ -5,6 +5,7 @@ declare global {
   interface Window {
     dataLayer: any;
     _mtm: any;
+    cookieBannerConsentChange: any;
   }
 }
 
@@ -13,6 +14,7 @@ export class CookieComponent {
   private cookieBlocked = "__cookie_blocked";
   private mainContentBlock: HTMLElement;
   private cookieModal: HTMLElement;
+  private onConsentChange:Function
 
   constructor() {
     let shouldRun = false;
@@ -26,6 +28,10 @@ export class CookieComponent {
     } else {
       shouldRun = this.getCookie(this.consentCookie) ? false : true;
     }
+
+    window.cookieBannerConsentChange = (callback) => {
+     this.onConsentChange = callback;
+    };
 
     this.mainContentBlock = document.getElementById("mainContentBlock");
 
@@ -271,6 +277,10 @@ export class CookieComponent {
 
     if (window._mtm) {
       window._mtm.push({ event: 'cookie_refresh' });
+    }
+
+    if(this.onConsentChange) {
+      this.onConsentChange(value);
     }
   }
 
