@@ -4,6 +4,7 @@ import "wicg-inert";
 declare global {
   interface Window {
     dataLayer: any;
+    cookieBannerConsentChange: any;
   }
 }
 
@@ -12,9 +13,14 @@ export class CookieComponent {
   private cookieBlocked = "__cookie_blocked";
   private mainContentBlock: HTMLElement;
   private cookieModal: HTMLElement;
+  private onConsentChange:Function
 
   constructor() {
     let shouldRun = false;
+
+    window.cookieBannerConsentChange = (callback) => {
+      this.onConsentChange = callback;
+    };
 
     if (
       /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(
@@ -220,6 +226,10 @@ export class CookieComponent {
       encodeURIComponent(value) +
       (expires ? "; expires=" + expires : "") +
       "; path=/";
+
+    if(this.onConsentChange) {
+      this.onConsentChange(value);
+    }
 
     if (window.dataLayer) {
       window.dataLayer.push({ event: "cookie_refresh" });
