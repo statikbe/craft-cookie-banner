@@ -271,6 +271,10 @@ export class CookieComponent {
       (expires ? "; expires=" + expires : "") +
       "; path=/";
 
+    if(this.onConsentChange) {
+      this.onConsentChange(value);
+    }
+
     if (window.dataLayer) {
       window.dataLayer.push({ event: "cookie_refresh" });
     }
@@ -279,9 +283,6 @@ export class CookieComponent {
       window._mtm.push({ event: 'cookie_refresh' });
     }
 
-    if(this.onConsentChange) {
-      this.onConsentChange(value);
-    }
   }
 
   private renderCookieModal() {
