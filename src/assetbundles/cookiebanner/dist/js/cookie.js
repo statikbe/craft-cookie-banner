@@ -229,14 +229,14 @@ class CookieComponent {
                 encodeURIComponent(value) +
                 (expires ? "; expires=" + expires : "") +
                 "; path=/";
+        if (this.onConsentChange) {
+            this.onConsentChange(value);
+        }
         if (window.dataLayer) {
             window.dataLayer.push({ event: "cookie_refresh" });
         }
         if (window._mtm) {
             window._mtm.push({ event: 'cookie_refresh' });
-        }
-        if (this.onConsentChange) {
-            this.onConsentChange(value);
         }
     }
     renderCookieModal() {
