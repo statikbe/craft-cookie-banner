@@ -25,8 +25,11 @@ class CookieBanner extends Plugin
 
         if (Craft::$app->getPlugins()->isPluginEnabled('translate')) {
             Event::on(
+            /** @phpstan-ignore-next-line */
                 Translate::class,
+                /** @phpstan-ignore-next-line */
                 Translate::EVENT_REGISTER_PLUGIN_TRANSLATION,
+                /** @phpstan-ignore-next-line */
                 function(RegisterPluginTranslationEvent $event) {
                     $event->plugins['cookie-banner'] = $this;
                 }
