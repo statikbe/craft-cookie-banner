@@ -26,7 +26,7 @@ class StatisticsController extends Controller
         $deniedCookies = 0;
         $settingsCookies = 0;
         /** @var CookieTrackingRecord $record */
-        foreach($records as $record) {
+        foreach ($records as $record) {
             if ($siteId && $siteId !== $record->siteId) {
                 continue;
             }
@@ -41,7 +41,7 @@ class StatisticsController extends Controller
             $firstRecordDate = '';
         } else {
             $cookiesPresent = true;
-            $firstRecordDate= \DateTimeImmutable::createFromFormat('Y-m', array_pop($records)->sectionDate)->format('F Y');
+            $firstRecordDate = \DateTimeImmutable::createFromFormat('Y-m', array_pop($records)->sectionDate)->format('F Y');
         }
 
         $total = $acceptedCookies + $deniedCookies + $settingsCookies;
@@ -70,7 +70,7 @@ class StatisticsController extends Controller
             }
 
             $title = \DateTimeImmutable::createFromFormat('Y-m', $record->sectionDate)->format('F Y');
-            if($siteId === 0) {
+            if ($siteId === 0) {
                 $siteName = \Craft::$app->sites->getSiteById($record->siteId)->name;
                 $title = $title . ' - ' . $siteName;
             }
@@ -109,7 +109,7 @@ class StatisticsController extends Controller
                 'from' => (int)$from,
                 'to' => (int)$to,
             ],
-            'data' => $rows
+            'data' => $rows,
         ]);
     }
 
