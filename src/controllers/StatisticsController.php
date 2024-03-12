@@ -26,7 +26,7 @@ class StatisticsController extends Controller
         $deniedCookies = 0;
         $settingsCookies = 0;
         /** @var CookieTrackingRecord $record */
-        foreach($records as $record) {
+        foreach ($records as $record) {
             if ($siteId && $siteId !== $record->siteId) {
                 continue;
             }
@@ -41,13 +41,16 @@ class StatisticsController extends Controller
             $firstRecordDate = '';
         } else {
             $cookiesPresent = true;
-            $firstRecordDate= \DateTimeImmutable::createFromFormat('Y-m', array_pop($records)->sectionDate)->format('F Y');
+            $firstRecordDate = \DateTimeImmutable::createFromFormat('Y-m', array_pop($records)->sectionDate)->format('F Y');
         }
+
+        $total = $acceptedCookies + $deniedCookies + $settingsCookies;
+
         $context = [
             'cookiesPresent' => $cookiesPresent,
-            'acceptedCookies' => $acceptedCookies,
-            'deniedCookies' => $deniedCookies,
-            'settingCookies' => $settingsCookies,
+            'acceptedCookies' => $acceptedCookies . " ({$this->getPercentage($acceptedCookies, $total)}%)",
+            'deniedCookies' => $deniedCookies . " ({$this->getPercentage($deniedCookies, $total)}%)",
+            'settingCookies' => $settingsCookies . " ({$this->getPercentage($settingsCookies, $total)}%)",
             'selectedSite' => $site,
             'firstRecordDate' => $firstRecordDate,
         ];
@@ -67,16 +70,17 @@ class StatisticsController extends Controller
             }
 
             $title = \DateTimeImmutable::createFromFormat('Y-m', $record->sectionDate)->format('F Y');
-            if($siteId === 0) {
+            if ($siteId === 0) {
                 $siteName = \Craft::$app->sites->getSiteById($record->siteId)->name;
                 $title = $title . ' - ' . $siteName;
             }
+            $total = $record->accept + $record->deny + $record->settings;
 
             $row = [
                 'title' => $title,
-                'accepted' => $record->accept,
-                'denied' => $record->deny,
-                'settings' => $record->settings,
+                'accepted' => $record->accept . " ({$this->getPercentage($record->accept, $total)}%)",
+                'denied' => $record->deny . " ({$this->getPercentage($record->deny, $total)}%)",
+                'settings' => $record->settings . " ({$this->getPercentage($record->settings, $total)}%)",
             ];
             $rows[] = $row;
         }
@@ -89,11 +93,11 @@ class StatisticsController extends Controller
         $total = count($rows);
         $limit = 100;
         $from = ($page - 1) * $limit + 1;
-        $lastPage = (int) ceil($total / $limit);
-        $to = $page === $lastPage ? $total : ($page*$limit);
-        $nextPageUrl = $baseUrl . sprintf('?page=%d', ($page+1));
-        $prevPageUrl = $baseUrl . sprintf('?page=%d', ($page-1));
-        $rows = array_slice($rows, $from-1, $limit);
+        $lastPage = (int)ceil($total / $limit);
+        $to = $page === $lastPage ? $total : ($page * $limit);
+        $nextPageUrl = $baseUrl . sprintf('?page=%d', ($page + 1));
+        $prevPageUrl = $baseUrl . sprintf('?page=%d', ($page - 1));
+        $rows = array_slice($rows, $from - 1, $limit);
         return $this->asJson([
             'pagination' => [
                 'total' => (int)$total,
@@ -105,7 +109,12 @@ class StatisticsController extends Controller
                 'from' => (int)$from,
                 'to' => (int)$to,
             ],
-            'data' => $rows
+            'data' => $rows,
         ]);
+    }
+
+    private function getPercentage($a, $b)
+    {
+        return round((($a / $b) * 100));
     }
 }
