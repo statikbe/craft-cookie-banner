@@ -55,7 +55,8 @@ class CookieBanner extends Plugin
 
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function (RegisterUrlRulesEvent $event) {
             $event->rules['cookie-banner/statistics'] = 'cookie-banner/statistics/render-index';
-            $event->rules['cookie-banner/statistics/table-view/<siteId:\d+>'] = 'cookie-banner/statistics/table-view';
+            $event->rules['cookie-banner/statistics/table-view-site/<siteId:\d+>'] = 'cookie-banner/statistics/table-view-site';
+            $event->rules['cookie-banner/statistics/table-view-group/<groupId:\d+>'] = 'cookie-banner/statistics/table-view-group';
         });
     }
 
