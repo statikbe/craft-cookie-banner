@@ -1,0 +1,19 @@
+<div id="revision-btn" class="btn menubtn" data-icon="world">{{ selectedSite.name }}</div>
+<div class="menu">
+    <ul class="padded">
+        <li>
+            <a href="{{ url('/admin/cookie-banner/statistics', { groupId : groupId, siteId : 0 } ) }}"
+               {% if 'all' == selectedSite.handle %}class="sel"{% endif %}>
+                {{ 'All sites'|t }}
+            </a>
+        </li>
+        {% for site in sites %}
+            <li>
+                <a href="{{ url('/admin/cookie-banner/statistics', { groupId: groupId, siteId : site.id} ) }}"
+                   {% if site.handle == selectedSite.handle %}class="sel"{% endif %}>
+                    {{ site.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

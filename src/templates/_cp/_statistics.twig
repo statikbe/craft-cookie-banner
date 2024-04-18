@@ -1,0 +1,104 @@
+{% extends "_layouts/cp.twig" %}
+
+{% set title = "Cookie acceptance statistics"|t('app') %}
+{% set selectedSubnavItem = 'defaults' %}
+
+{% set crumbs = [
+    { label: 'Cookie acceptance statistics', url: '#' }
+] %}
+
+{% set groupId = craft.app.request.getParam('groupId') %}
+{% set siteGroups = craft.app.sites.getAllGroups() %}
+
+{% block contextMenu %}
+    {% if groupId %}
+        {% set sites = craft.app.sites.getSitesByGroupId(groupId) %}
+    {% elseif siteGroups|length == 1 %}
+        {% set sites = craft.app.sites.getAllSites() %}
+    {% endif %}
+    {% if sites is defined %}
+        {% include 'cookie-banner/_cp/_sites.twig' with { sites: sites, groupId : groupId ?? null } %}
+    {% endif %}
+{% endblock %}
+
+
+{% block sidebar %}
+    <nav>
+        <ul id="groups">
+            <li>
+                <a href="{{ url('cookie-banner/statistics') }}"{% if not groupId %} class="sel"{% endif %}>{{ "All Sites"|t('app') }}</a>
+            </li>
+            {% for g in siteGroups %}
+                <li>
+                    {{ tag('a', {
+                        href: url('cookie-banner/statistics/', {groupId: g.id}),
+                        class: groupId and g.id == groupId ? 'sel' : false,
+                        text: g.name|t('site'),
+                        data: {
+                            id: g.id,
+                            'raw-name': g.getName(false),
+                        },
+                    }) }}
+                </li>
+            {% endfor %}
+
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    {% if cookiesPresent|length %}
+        <div id="dashboard-grid" class="grid">
+            <div class="item" data-colspan="3">
+                <div class="front">
+                    <div class="pane">
+                        <div class="body">
+                            <h2 style="margin-bottom: 0;">{{ 'Cookies'|t }}</h2>
+                            <p style="font-size: 0.7rem; margin-top: 0;">{{ 'Cookie statistics are being tracked since'|t }} {{ firstRecordDate }}</p>
+                            {% include('cookie-banner/_cp/_widgets/_total_cookies.twig')|raw %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item" data-colspan="3">
+                <div class="widget">
+                    <div class="front">
+                        <div class="pane bg-white" style="background: white;">
+                            <div class="body">
+                                {% include('cookie-banner/_cp/_widgets/_table.twig')|raw %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div>{{ 'No data present in database yet'|t }}</div>
+    {% endif %}
+{% endblock %}
+
+{% set columnsVotes = [
+    { name: '__slot:title', title: "Period per site" },
+    { name: 'accepted', title: 'Accepted' },
+    { name: 'denied', title: 'Denied' },
+    { name: 'settings', title: "Settings" },
+] %}
+{% set actions = [] %}
+
+{% if (groupId and (selectedSite and selectedSite.id > 0)) or not groupId %}
+    {% set endpoint = '/admin/cookie-banner/statistics/table-view-site/' ~ selectedSite.id %}
+{% else %}
+    {% set endpoint = '/admin/cookie-banner/statistics/table-view-group/' ~ groupId %}
+{% endif %}
+
+{% js %}
+    new Craft.VueAdminTable({
+    container: '#cookie-table',
+    columns: {{ columnsVotes|json_encode|raw }},
+    tableDataEndpoint: "{{ endpoint }}" ,
+    checkboxes:  0,
+    allowMultipleSelections: false,
+    perPage: 100,
+    actions: {{ actions|json_encode|raw }},
+    });
+{% endjs %}
