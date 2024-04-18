@@ -36,13 +36,12 @@ class m231213_141108_statik_cookie_tracking extends Migration
      */
     public function safeDown(): bool
     {
-
         $this->dropTable(CookieTrackingRecord::tableName());
 
         return true;
     }
 
-    private function tableExists(string $tableName) : bool
+    private function tableExists(string $tableName): bool
     {
         return ($this->db->getTableSchema($tableName, true) !== null);
     }
