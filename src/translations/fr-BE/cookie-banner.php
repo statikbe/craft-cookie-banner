@@ -1,10 +1,10 @@
 <?php
 
-return array(
+return [
     'Deze website gebruikt cookies' => 'Ce site web utilise des cookies',
-    'Door op "Alle cookies aanvaarden" te klikken ga je akkoord met het opslaan van onze cookies op je computer. Zo kunnen we een betere gebruikservaring bieden, en het laat ons toe om het gebruik van de website te analyseren. Door op ‘Je voorkeuren aanpassen’ te klikken kan je kiezen welke cookies je toelaat. Enkel de essentiële en de functionele cookies zijn noodzakelijk voor de goede werking van de website en kan je niet weigeren' => "En cliquant sur 'Accepter tous les cookies', vous acceptez que nous stockions des cookies sur votre ordinateur. Cela nous permet d'offrir une meilleure expérience utilisateur et d'analyser l'utilisation du site web. En cliquant sur 'Gérer vos préférences', vous pouvez choisir les cookies que vous autorisez. Seuls les cookies essentiels en les cookies fonctionnels sont nécessaires au bon fonctionnement du site web et ne peuvent être refusés",
+    'Door op "Alle cookies aanvaarden" te klikken ga je akkoord met het opslaan van onze cookies op je computer. Zo kunnen we een betere gebruikservaring bieden, en het laat ons toe om het gebruik van de website te analyseren. Door op ‘Je voorkeuren aanpassen’ te klikken kan je kiezen welke cookies je toelaat. Enkel de essentiële en de functionele cookies zijn noodzakelijk voor de goede werking van de website en kan je niet weigeren' => "En cliquant sur 'Accepter tous les cookies', vous acceptez que nous stockions des cookies sur votre ordinateur. Cela nous permet d'offrir une meilleure expérience utilisateur et d'analyser l'utilisation du site web. En cliquant sur 'Gérer vos préférences', vous pouvez choisir les cookies que vous autorisez. Seuls les cookies essentiels et les cookies fonctionnels sont nécessaires au bon fonctionnement du site web et ne peuvent être refusés",
     'Alle cookies aanvaarden' => 'Accepter tous les cookies',
-    'Enkel essentiële cookies aanvaarden' => 'Accepter que les cookies essentiels',
+    'Enkel essentiële cookies aanvaarden' => "N'accepter que les cookies essentiels",
     'Je voorkeuren aanpassen' => 'Gérer vos préférences',
     'Cookie-instellingen' => 'Paramètres des cookies',
     'Sluit cookie instellingen' => 'Fermez paramètres des cookies',
@@ -18,4 +18,4 @@ return array(
     'Marketingcookies' => 'Cookies marketing',
     'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.' => "L'objectif de ces cookies est de personnaliser l'expérience de l'utilisateur et d'afficher des contenus et des offres pertinents sur ce site et d'autres sites web",
     'Mijn keuze bewaren' => 'Sauvegarder mon choix',
-);
+];
