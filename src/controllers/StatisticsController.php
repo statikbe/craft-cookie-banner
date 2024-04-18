@@ -11,13 +11,19 @@ class StatisticsController extends Controller
 {
     protected int|bool|array $allowAnonymous = [];
 
-    public function actionRenderIndex(int $siteId = 0): Response
+    public function actionRenderIndex(int $groupId = 0, int $siteId = 0): Response
     {
         // INFO: we invent empty site to represent all sites
         $site = ['name' => 'All sites', 'id' => 0, 'handle' => 'all'];
 
+        $siteIds = null;
         if ($siteId) {
             $site = \Craft::$app->sites->getSiteById($siteId);
+        }
+
+        if($groupId) {
+            $sites = \Craft::$app->getSites()->getSitesByGroupId($groupId);
+            $siteIds = collect($sites)->pluck('id')->all();
         }
 
         $records = CookieTrackingRecord::find()->orderBy('sectionDate DESC')->all();
@@ -26,8 +32,8 @@ class StatisticsController extends Controller
         $deniedCookies = 0;
         $settingsCookies = 0;
         /** @var CookieTrackingRecord $record */
-        foreach ($records as $record) {
-            if ($siteId && $siteId !== $record->siteId) {
+        foreach($records as $record) {
+            if ($siteIds && !in_array($record->siteId, $siteIds)) {
                 continue;
             }
 
@@ -58,22 +64,41 @@ class StatisticsController extends Controller
         return $this->renderTemplate('cookie-banner/_cp/_statistics', $context);
     }
 
-    public function actionTableView(int $siteId, int $page = 1): Response
+    public function actionTableViewSite(int $siteId, int $page = 1): Response
     {
+        if($siteId === 0) {
+            $sites = \Craft::$app->getSites()->getAllSites();
+            $siteIds = collect($sites)->pluck('id')->all();
+            $rows = $this->parseDataForTable($siteIds);
+        } else {
+            $rows = $this->parseDataForTable([$siteId]);
+        }
+
+        return $this->returnAdminTableResult($rows, sprintf('cookie-banner/statistics/table-view-site/%s', $siteId), $page);
+    }
+
+    public function actionTableViewGroup(int $groupId, int $page = 1): Response
+    {
+        $sites = \Craft::$app->getSites()->getSitesByGroupId($groupId);
+        $siteIds = collect($sites)->pluck('id')->all();
+        $rows = $this->parseDataForTable($siteIds);
+        return $this->returnAdminTableResult($rows, sprintf('cookie-banner/statistics/table-view-group/%s', $groupId), $page);
+    }
+
+
+    private function parseDataForTable(array $sites = []) {
         $rows = [];
         $records = CookieTrackingRecord::find()->orderBy('sectionDate DESC')->all();
-
         /** @var CookieTrackingRecord $record */
         foreach ($records as $record) {
-            if ($siteId != 0 && $siteId !== $record->siteId) {
+            if ($sites && !in_array($record->siteId, $sites)) {
                 continue;
             }
 
             $title = \DateTimeImmutable::createFromFormat('Y-m', $record->sectionDate)->format('F Y');
-            if ($siteId === 0) {
-                $siteName = \Craft::$app->sites->getSiteById($record->siteId)->name;
-                $title = $title . ' - ' . $siteName;
-            }
+            $siteName = \Craft::$app->sites->getSiteById($record->siteId)->name;
+            $title = $title . ' - ' . $siteName;
+
             $total = $record->accept + $record->deny + $record->settings;
 
             $row = [
@@ -84,8 +109,7 @@ class StatisticsController extends Controller
             ];
             $rows[] = $row;
         }
-
-        return $this->returnAdminTableResult($rows, sprintf('cookie-banner/statistics/table-view/%s', $siteId), $page);
+        return $rows;
     }
 
     private function returnAdminTableResult(array $rows, string $baseUrl, int $page): Response
