@@ -2,7 +2,7 @@
   "name": "statikbe/craft-cookie-banner",
   "description": "Cookie banner and modal package",
   "type": "craft-plugin",
-  "version": "3.2.1",
+  "version": "5.0.0.beta-01",
   "keywords": [
     "craft",
     "cms",
@@ -27,7 +27,7 @@
     }
   ],
   "require": {
-    "craftcms/cms": "^4.0.0",
+    "craftcms/cms": "^5.0.0",
     "jaybizzle/crawler-detect": "^1.2"
   },
   "require-dev": {

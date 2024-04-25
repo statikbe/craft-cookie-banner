@@ -6,6 +6,7 @@ use Craft;
 use craft\base\Plugin;
 use craft\events\RegisterUrlRulesEvent;
 use craft\events\TemplateEvent;
+use craft\helpers\UrlHelper;
 use craft\web\assets\admintable\AdminTableAsset;
 use craft\web\twig\variables\CraftVariable;
 use craft\web\UrlManager;
@@ -66,8 +67,7 @@ class CookieBanner extends Plugin
     public function getCpNavItem(): ?array
     {
         $item = parent::getCpNavItem();
-        $item['url'] = 'cookie-banner/statistics';
-
+        $item['url'] = UrlHelper::cpUrl('cookie-banner/statistics', ['site' => '*']);
         return $item;
     }
 }

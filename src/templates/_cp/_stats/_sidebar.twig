@@ -1,0 +1,24 @@
+{% set groupId = craft.app.request.getParam('groupId') %}
+{% set siteGroups = craft.app.sites.getAllGroups() %}
+
+<nav>
+    <ul id="groups">
+        <li>
+            <a href="{{ url('cookie-banner/statistics') }}"{% if not groupId %} class="sel"{% endif %}>{{ "All Sites"|t('app') }}</a>
+        </li>
+        {% for g in siteGroups %}
+            <li>
+                {{ tag('a', {
+                    href: url('cookie-banner/statistics/', {groupId: g.id}),
+                    class: groupId and g.id == groupId ? 'sel' : false,
+                    text: g.name|t('site'),
+                    data: {
+                        id: g.id,
+                        'raw-name': g.getName(false),
+                    },
+                }) }}
+            </li>
+        {% endfor %}
+
+    </ul>
+</nav>
