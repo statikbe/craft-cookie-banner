@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.3.0 - 2024-06-10
+### Added
+- Statistics are now grouped per site group and listed with percentages ([#22](https://github.com/statikbe/craft-cookie-banner/pull/22) & [#26](https://github.com/statikbe/craft-cookie-banner/pull/26))
+
 ## 3.2.1 - 2024-02-28
 ### Fixed
 
