@@ -21,18 +21,18 @@ class CookieTrackingController extends Controller
     public static function actionAddChoiceToDatabase(): bool
     {
         $req = \Craft::$app->request;
-        if(empty($req->getBodyParam('response'))) {
+        if (empty($req->getBodyParam('response'))) {
             return false;
         }
 
         $siteId = Craft::$app->sites->currentSite->id;
-        $currentDateSection = (new \DateTime)->format('Y-m');
+        $currentDateSection = (new \DateTime())->format('Y-m');
 
         $choice = $req->getBodyParam('response');
 
         $cookieTrackingRecord = CookieTrackingRecord::find()->where(['siteId' => $siteId, 'sectionDate' => $currentDateSection])->one();
 
-        if($cookieTrackingRecord === null) {
+        if ($cookieTrackingRecord === null) {
             $cookieTrackingRecord = new CookieTrackingRecord();
             $cookieTrackingRecord->accept = 0;
             $cookieTrackingRecord->deny = 0;
@@ -41,7 +41,7 @@ class CookieTrackingController extends Controller
             $cookieTrackingRecord->sectionDate = $currentDateSection;
         }
 
-        switch($choice) {
+        switch ($choice) {
             case 'accept':
                 $cookieTrackingRecord->accept = $cookieTrackingRecord->accept + 1;
                 break;

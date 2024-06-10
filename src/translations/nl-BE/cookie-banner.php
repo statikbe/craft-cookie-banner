@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'Deze website gebruikt cookies' => 'Deze website gebruikt cookies',
     'Door op "Alle cookies aanvaarden" te klikken ga je akkoord met het opslaan van onze cookies op je computer. Zo kunnen we een betere gebruikservaring bieden, en het laat ons toe om het gebruik van de website te analyseren. Door op ‘Je voorkeuren aanpassen’ te klikken kan je kiezen welke cookies je toelaat. Enkel de essentiële en de functionele cookies zijn noodzakelijk voor de goede werking van de website en kan je niet weigeren' => 'Door op "Alle cookies aanvaarden" te klikken ga je akkoord met het opslaan van onze cookies op je computer. Zo kunnen we een betere gebruikservaring bieden, en het laat ons toe om het gebruik van de website te analyseren. Door op ‘Je voorkeuren aanpassen’ te klikken kan je kiezen welke cookies je toelaat. Enkel de essentiële en de functionele cookies zijn noodzakelijk voor de goede werking van de website en kan je niet weigeren',
     'Alle cookies aanvaarden' => 'Alle cookies aanvaarden',

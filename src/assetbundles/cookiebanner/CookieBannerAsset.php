@@ -29,11 +29,11 @@ class CookieBannerAsset extends AssetBundle
     {
         $this->sourcePath = '@statikbe/cookiebanner/assetbundles/cookiebanner/dist';
         $this->js = [
-            'js/cookie.js'
+            'js/cookie.js',
         ];
 
         $this->css = [
-            'css/inert.css'
+            'css/inert.css',
         ];
 
         $this->depends = [];
