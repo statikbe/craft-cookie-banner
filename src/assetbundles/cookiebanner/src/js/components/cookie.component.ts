@@ -88,7 +88,7 @@ export class CookieComponent {
 
        let promise = new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
-          const url = "cookie-tracking/add-choice-to-database";
+          const url = location.protocol + "//" + location.hostname + "/cookie-tracking/add-choice-to-database";
           var params = "response=" + choice;
 
           xhr.open("POST", url, true);
