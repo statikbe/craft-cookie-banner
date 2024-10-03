@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## ## 5.0.1 - 2024-10-03
+### Fixed
+- Fixed an issue with the statistics callback, which would result in lots of 404's ([#27](https://github.com/statikbe/craft-cookie-banner/pull/27))
+
 ## 5.0.0 - 2024-05-28
 ### Added
 - Craft 5 support 🚀
