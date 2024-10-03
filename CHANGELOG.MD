@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.3.0 - 2024-06-10
+### Added
+- Statistics are now grouped per site group and listed with percentages ([#22](https://github.com/statikbe/craft-cookie-banner/pull/22) & [#26](https://github.com/statikbe/craft-cookie-banner/pull/26))
+
+## 3.2.1 - 2024-02-28
+### Fixed
+
+- Fire consent update before the cookie refresh event. 
+
+
+## 3.2.0 - 2024-02-27
+### Feature
+
+- Added support for Google Consent Mode V2.
+
+
+## 3.1.0 - 2024-02-09
+
+### Feature
+
+- Tracking module to count how much each option is chosen
+
 ## 3.0.5 - 2023-09-28
 
 ### Fixed
