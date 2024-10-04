@@ -2,7 +2,7 @@
   "name": "statikbe/craft-cookie-banner",
   "description": "Cookie banner and modal package",
   "type": "craft-plugin",
-  "version": "3.0.5",
+  "version": "3.3.1",
   "keywords": [
     "craft",
     "cms",
@@ -27,12 +27,23 @@
     }
   ],
   "require": {
-    "craftcms/cms": "^4.0.0"
+    "craftcms/cms": "^4.0.0",
+    "jaybizzle/crawler-detect": "^1.2"
+  },
+  "require-dev": {
+    "craftcms/ecs": "dev-main",
+    "craftcms/phpstan": "dev-main"
   },
   "autoload": {
     "psr-4": {
       "statikbe\\cookiebanner\\": "src/"
     }
+  },
+  "scripts": {
+    "check-cs": "ecs check --ansi",
+    "fix-cs": "ecs check --ansi --fix",
+    "phpstan": "phpstan --memory-limit=1G",
+    "ci": "ecs check --ansi --fix && phpstan --memory-limit=1G"
   },
   "extra": {
     "name": "Cookie Banner",
@@ -41,5 +52,11 @@
     "hasSettings": false,
     "developer": "Statik",
     "class": "statikbe\\cookiebanner\\CookieBanner"
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
   }
 }
