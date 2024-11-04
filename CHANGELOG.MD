@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.3.2 - 2024-11-4
+### fixed
+- Fixed a bug with date formatting on the 31st of every month
+
+## 3.3.1 - 2024-06-10
+### fixed
+- Specify a fully qualified URL to XMLHttpRequest so it will never append the current URL to the request
+
 ## 3.3.0 - 2024-06-10
 ### Added
 - Statistics are now grouped per site group and listed with percentages ([#22](https://github.com/statikbe/craft-cookie-banner/pull/22) & [#26](https://github.com/statikbe/craft-cookie-banner/pull/26))
@@ -11,7 +19,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 3.2.1 - 2024-02-28
 ### Fixed
 
-- Fire consent update before the cookie refresh event. 
+- Fire consent update before the cookie refresh event.
 
 
 ## 3.2.0 - 2024-02-27
