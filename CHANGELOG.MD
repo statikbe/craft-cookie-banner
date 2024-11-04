@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## ## 5.0.2 - 2024-11-04
+### Fixed
+- Fixed an issue with date formatting on the 31st of each month
+
 ## ## 5.0.1 - 2024-10-03
 ### Fixed
 - Fixed an issue with the statistics callback, which would result in lots of 404's ([#27](https://github.com/statikbe/craft-cookie-banner/pull/27))
@@ -19,7 +24,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 3.2.1 - 2024-02-28
 ### Fixed
 
-- Fire consent update before the cookie refresh event. 
+- Fire consent update before the cookie refresh event.
 
 
 ## 3.2.0 - 2024-02-27
