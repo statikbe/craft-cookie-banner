@@ -3,6 +3,7 @@
 namespace statikbe\cookiebanner\controllers;
 
 use Craft;
+use craft\fields\Date;
 use craft\helpers\Cp;
 use craft\helpers\UrlHelper;
 use craft\models\Site;
@@ -11,7 +12,7 @@ use statikbe\cookiebanner\records\CookieTrackingRecord;
 use yii\web\Response;
 use function array_pop;
 
-class StatisticsController extends Controller
+class  StatisticsController extends Controller
 {
     protected int|bool|array $allowAnonymous = [];
 
@@ -157,7 +158,7 @@ class StatisticsController extends Controller
     }
 
 
-    private function parseDataForTable(array $sites = [])
+    private function parseDataForTable(array $sites = []): array
     {
         $rows = [];
         $records = CookieTrackingRecord::find()->orderBy('sectionDate DESC')->all();
@@ -167,7 +168,9 @@ class StatisticsController extends Controller
                 continue;
             }
 
-            $title = \DateTimeImmutable::createFromFormat('Y-m', $record->sectionDate)->format('F Y');
+            $date = new \DateTime($record->sectionDate);
+            $date->setDate($date->format('Y'), $date->format('m'), 1);
+            $title = \DateTimeImmutable::createFromFormat('Y-m', $date->format('Y-m'))->format('F Y');
             $siteName = \Craft::$app->sites->getSiteById($record->siteId)->name;
             $title = $title . ' - ' . $siteName;
 
