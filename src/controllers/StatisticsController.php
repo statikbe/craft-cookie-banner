@@ -95,7 +95,9 @@ class StatisticsController extends Controller
                 continue;
             }
 
-            $title = \DateTimeImmutable::createFromFormat('Y-m', $record->sectionDate)->format('F Y');
+            $date = new \DateTime($record->sectionDate);
+            $date->setDate($date->format('Y'), $date->format('m'), 1);
+            $title = \DateTimeImmutable::createFromFormat('Y-m', $date->format('Y-m'))->format('F Y');
             $siteName = \Craft::$app->sites->getSiteById($record->siteId)->name;
             $title = $title . ' - ' . $siteName;
 
