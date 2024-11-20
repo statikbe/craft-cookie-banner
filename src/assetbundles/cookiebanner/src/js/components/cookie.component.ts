@@ -79,7 +79,6 @@ export class CookieComponent {
           return;
       }
       var parent = element.parentElement;
-      console.log(parent)
       var siteId = parent.dataset.site;
       if (element.classList.contains("js-cookie-settings")) {
           event.preventDefault();
