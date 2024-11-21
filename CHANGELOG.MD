@@ -1,9 +1,12 @@
-# Translate Changelog
+# Cookie banner Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## ## 5.0.3 - 2024-11-21
+### Fixed
+- Fixed an issue where statistics were not being saved in the correct site ([#34](https://github.com/statikbe/craft-cookie-banner/pull/34))
 
 ## ## 5.0.2 - 2024-11-04
 ### Fixed
