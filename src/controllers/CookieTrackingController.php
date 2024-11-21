@@ -25,7 +25,7 @@ class CookieTrackingController extends Controller
             return false;
         }
 
-        $siteId = $req->getBodyParam('siteId', Craft::$app->getSites()->getCurrentSite());
+        $siteId = $req->getBodyParam('siteId', Craft::$app->getSites()->getCurrentSite()->id);
         $currentDateSection = (new \DateTime())->format('Y-m');
 
         $choice = $req->getBodyParam('response');
