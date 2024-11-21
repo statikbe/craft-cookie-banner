@@ -10,7 +10,7 @@
         <p>
             {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('cookie-banner',{cookieLink: cookiePage.getUrl() ?? craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
         </p>
-        <div class="cookie-modal__actions mt-4 text-center">
+        <div class="cookie-modal__actions mt-4 text-center" data-site="{{ currentSite.id }}">
             <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t('cookie-banner') }}</a>
         </div>
         <h2 class="mt-4 mb-1 text-lg">{{ 'Je voorkeuren aanpassen'|t('cookie-banner') }}</h2>
@@ -51,7 +51,7 @@
                     {{ 'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.'|t('cookie-banner') }}
                 </div>
             </div>
-            <div class="cookie-modal__actions">
+            <div class="cookie-modal__actions" data-site="{{ currentSite.id }}">
                 <button type="submit" class="btn btn--primary js-modal-close notranslate">{{ 'Mijn keuze bewaren'|t('cookie-banner') }}</button>
             </div>
         </form>

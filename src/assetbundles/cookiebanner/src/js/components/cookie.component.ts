@@ -79,23 +79,26 @@ export class CookieComponent {
           return;
       }
 
+      var parent = element.parentElement;
+      var siteId = parent.dataset.site;
+
       if (element.classList.contains("js-cookie-settings")) {
           event.preventDefault();
-          this.cookieRatio('settings');
+          this.cookieRatio('settings', siteId);
       } else if (element.classList.contains("js-cookie-accept")) {
           event.preventDefault();
-          this.cookieRatio('accept');
+          this.cookieRatio('accept', siteId);
       } else if(element.classList.contains('js-cookie-essentials')){
-          this.cookieRatio('deny');
+          this.cookieRatio('deny', siteId);
       }
     }
 
-    private cookieRatio(choice: string) {
+    private cookieRatio(choice: string, siteId: string) {
 
        let promise = new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
           const url = location.protocol + "//" + location.hostname + "/cookie-tracking/add-choice-to-database";
-          var params = "response=" + choice;
+          var params = "response=" + choice + "&siteId=" + siteId;
 
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
