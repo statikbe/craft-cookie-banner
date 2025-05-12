@@ -32,7 +32,7 @@ You can also pass an array of options:
 - banner: path to the template for the banner
 - overlay: HTML string with styling that will you use as overlay behind the banner
 - supportIE: wether or not the Javascript used should be compiled for ES6 or ES5 (defaults to false so using ES6)
-- cookiePage: the entry where the cookie policy content is defined. This is used on the modal template to show the possible settings.
+- cookiePage: the entry where the cookie policy content is defined. It is also possible to provide an (external) URL. This is used on the modal template to show the possible settings.
 
 For example:
 
