@@ -1,12 +1,14 @@
 {% set groupId = craft.app.request.getParam('groupId') %}
 
+<p style="font-size: 0.7rem; margin-top: 0;"><strong>{{ 'We track how many users accept, deny, or customize cookies to understand how cookie consent impacts the data we see in our analytics tools. This helps identify discrepancies in expected vs. actual user counts, evaluate the effectiveness of design changes to the cookie banner, and quickly detect shifts in user behavior after website updates.'|t }}</strong></p>
+
 {% if cookiesPresent|length %}
     <div id="dashboard-grid" class="grid">
         <div class="item" data-colspan="3">
             <div class="front">
                 <div class="pane">
                     <div class="body">
-                        <h2 style="margin-bottom: 0;">{{ 'Cookies'|t }}</h2>
+                        <h2 style="margin-bottom: 0;">{{ 'Percentage rates'|t }}</h2>
                         <p style="font-size: 0.7rem; margin-top: 0;">{{ 'Cookie statistics are being tracked since'|t }} {{ firstRecordDate }}</p>
                         {% include('cookie-banner/_cp/_widgets/_total_cookies.twig')|raw %}
                     </div>

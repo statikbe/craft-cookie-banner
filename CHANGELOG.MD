@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## ## 5.1.1 - 2025-05-26
+### Added
+- Add extra text to explain the purpose of cookie acceptance counting.
+
 ## ## 5.1.0 - 2025-05-12
 ### Added
 - Added functionality to have an url as cookiePage ([#21](https://github.com/statikbe/craft-cookie-banner/issues/21))
