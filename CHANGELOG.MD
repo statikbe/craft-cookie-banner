@@ -1,29 +1,41 @@
-# Cookie anner Changelog
+# Cookie banner Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 3.4.0 - 2025-05-12
+## ## 5.1.2 - 2025-10-30
+### Fixed
+- Fixed translation issues with cookie banner text
+
+## ## 5.1.1 - 2025-05-26
+### Added
+- Add extra text to explain the purpose of cookie acceptance counting.
+
+## ## 5.1.0 - 2025-05-12
 ### Added
 - Added functionality to have an url as cookiePage ([#21](https://github.com/statikbe/craft-cookie-banner/issues/21))
 - Added link to cookie policy on first screen of cookie banner ([#25](https://github.com/statikbe/craft-cookie-banner/issues/25))
 
-## 3.3.3 - 2024-11-21
-### fixed
+## ## 5.0.3 - 2024-11-21
+### Fixed
 - Fixed an issue where statistics were not being saved in the correct site ([#34](https://github.com/statikbe/craft-cookie-banner/pull/34))
 
-## 3.3.2 - 2024-11-4
-### fixed
-- Fixed a bug with date formatting on the 31st of every month
+## ## 5.0.2 - 2024-11-04
+### Fixed
+- Fixed an issue with date formatting on the 31st of each month
 
-## 3.3.1 - 2024-06-10
-### fixed
-- Specify a fully qualified URL to XMLHttpRequest so it will never append the current URL to the request
+## ## 5.0.1 - 2024-10-03
+### Fixed
+- Fixed an issue with the statistics callback, which would result in lots of 404's ([#27](https://github.com/statikbe/craft-cookie-banner/pull/27))
 
-## 3.3.0 - 2024-06-10
+## 5.0.0 - 2024-05-28
 ### Added
-- Statistics are now grouped per site group and listed with percentages ([#22](https://github.com/statikbe/craft-cookie-banner/pull/22) & [#26](https://github.com/statikbe/craft-cookie-banner/pull/26))
+- Craft 5 support 🚀
+
+## 5.0.0-beta.1 - 2024-05-14
+### Added
+- Craft 5 support 🚀
 
 ## 3.2.1 - 2024-02-28
 ### Fixed
