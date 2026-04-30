@@ -2,7 +2,7 @@
   "name": "statikbe/craft-cookie-banner",
   "description": "Cookie banner and modal package",
   "type": "craft-plugin",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "keywords": [
     "craft",
     "cms",
@@ -47,8 +47,8 @@
   },
   "extra": {
     "name": "Cookie Banner",
-    "handle": "cookie-banner",
-    "schemaVersion": "1.0.0",
+    "handle": "_statik-cookie-banner",
+    "schemaVersion": "2.0.0",
     "hasSettings": false,
     "developer": "Statik",
     "class": "statikbe\\cookiebanner\\CookieBanner"
