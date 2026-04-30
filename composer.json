@@ -28,7 +28,8 @@
   ],
   "require": {
     "craftcms/cms": "^5.0.0",
-    "jaybizzle/crawler-detect": "^1.2"
+    "jaybizzle/crawler-detect": "^1.2",
+    "statikbe/craft-cookie-banner-installer": "^1.0"
   },
   "require-dev": {
     "craftcms/ecs": "dev-main",

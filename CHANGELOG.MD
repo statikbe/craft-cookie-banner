@@ -5,8 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 5.2.0 - 2026-04-30
-### Fixed
-- Updated plugin handle to "_statik-cookie-banner" to prevent conflicts with other plugins using the same handle.
+### Changed
+- Updated plugin handle to `_statik-cookie-banner` to prevent conflicts with other plugins using the same handle.
+- The handle rename is applied automatically via a content migration installed by the new `statikbe/craft-cookie-banner-installer` Composer plugin. The standard `./craft migrate/all` deploy step picks up the rename — no manual action needed per site.
+
+### Upgrade notes
+- Before upgrading, add `statikbe/craft-cookie-banner-installer` to the `config.allow-plugins` block of your site's `composer.json`:
+  ```json
+  "config": {
+    "allow-plugins": {
+      "statikbe/craft-cookie-banner-installer": true
+    }
+  }
+  ```
+- After `composer update`, the installer copies `migrations/m260430_094400_rename_cookie_banner_handle.php` into the project root. Running `./craft migrate/all` (or `migrate/up`) renames the plugin record in `{{%plugins}}` and `config/project/project.yaml` from `cookie-banner` to `_statik-cookie-banner`. The migration is idempotent and safe to commit.
 
 ## 5.1.2 - 2025-10-30
 ### Fixed
