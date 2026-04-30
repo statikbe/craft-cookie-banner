@@ -131,7 +131,7 @@ class  StatisticsController extends Controller
         return $this->asCpScreen()
             ->title("Cookie acceptance statistics")
             ->crumbs($crumbs)
-            ->contentTemplate('cookie-banner/_cp/_stats/_content', $context);
+            ->contentTemplate('_statik-cookie-banner/_cp/_stats/_content', $context);
     }
 
     public function actionTableViewSite(int $siteId, int $page = 1): Response

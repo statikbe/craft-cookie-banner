@@ -14,14 +14,14 @@ class CookieBannerVariable
 {
     public $supportIE = false;
     public $modal = [
-        'template' => 'cookie-banner/_modal',
+        'template' => '_statik-cookie-banner/_modal',
         'mode' => View::TEMPLATE_MODE_CP,
     ];
     public $banner = [
-        'template' => 'cookie-banner/_banner',
+        'template' => '_statik-cookie-banner/_banner',
         'mode' => View::TEMPLATE_MODE_CP,
     ];
-    public $overlay = 'cookie-banner/_overlay';
+    public $overlay = '_statik-cookie-banner/_overlay';
 
     public $cookiePage;
 
