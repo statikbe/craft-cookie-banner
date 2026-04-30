@@ -4,28 +4,33 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## ## 5.1.2 - 2025-10-30
+## 5.2.0 - 2026-04-30
+### Changed
+- Updated plugin handle to `_statik-cookie-banner` to prevent conflicts with other plugins using the same handle.
+- The handle rename is applied automatically via a content migration installed by the new `statikbe/craft-cookie-banner-installer` Composer plugin. The standard `./craft migrate/all` deploy step picks up the rename — no manual action needed per site.
+
+## 5.1.2 - 2025-10-30
 ### Fixed
 - Fixed translation issues with cookie banner text
 
-## ## 5.1.1 - 2025-05-26
+## 5.1.1 - 2025-05-26
 ### Added
 - Add extra text to explain the purpose of cookie acceptance counting.
 
-## ## 5.1.0 - 2025-05-12
+## 5.1.0 - 2025-05-12
 ### Added
 - Added functionality to have an url as cookiePage ([#21](https://github.com/statikbe/craft-cookie-banner/issues/21))
 - Added link to cookie policy on first screen of cookie banner ([#25](https://github.com/statikbe/craft-cookie-banner/issues/25))
 
-## ## 5.0.3 - 2024-11-21
+## 5.0.3 - 2024-11-21
 ### Fixed
 - Fixed an issue where statistics were not being saved in the correct site ([#34](https://github.com/statikbe/craft-cookie-banner/pull/34))
 
-## ## 5.0.2 - 2024-11-04
+## 5.0.2 - 2024-11-04
 ### Fixed
 - Fixed an issue with date formatting on the 31st of each month
 
-## ## 5.0.1 - 2024-10-03
+## 5.0.1 - 2024-10-03
 ### Fixed
 - Fixed an issue with the statistics callback, which would result in lots of 404's ([#27](https://github.com/statikbe/craft-cookie-banner/pull/27))
 
