@@ -61,7 +61,7 @@ class StatisticsController extends Controller
             'firstRecordDate' => $firstRecordDate,
         ];
 
-        return $this->renderTemplate('cookie-banner/_cp/_statistics', $context);
+        return $this->renderTemplate('_statik-cookie-banner/_cp/_statistics', $context);
     }
 
     public function actionTableViewSite(int $siteId, int $page = 1): Response
@@ -141,6 +141,8 @@ class StatisticsController extends Controller
 
     private function getPercentage($a, $b)
     {
-        return round((($a / $b) * 100));
+        if($a && $b) {
+            return round((($a / $b) * 100));
+        }
     }
 }
