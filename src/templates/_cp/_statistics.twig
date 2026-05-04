@@ -17,7 +17,7 @@
         {% set sites = craft.app.sites.getAllSites() %}
     {% endif %}
     {% if sites is defined %}
-        {% include 'cookie-banner/_cp/_sites.twig' with { sites: sites, groupId : groupId ?? null } %}
+        {% include '_statik-cookie-banner/_cp/_sites.twig' with { sites: sites, groupId : groupId ?? null } %}
     {% endif %}
 {% endblock %}
 
@@ -55,7 +55,7 @@
                         <div class="body">
                             <h2 style="margin-bottom: 0;">{{ 'Cookies'|t }}</h2>
                             <p style="font-size: 0.7rem; margin-top: 0;">{{ 'Cookie statistics are being tracked since'|t }} {{ firstRecordDate }}</p>
-                            {% include('cookie-banner/_cp/_widgets/_total_cookies.twig')|raw %}
+                            {% include('_statik-cookie-banner/_cp/_widgets/_total_cookies.twig')|raw %}
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="front">
                         <div class="pane bg-white" style="background: white;">
                             <div class="body">
-                                {% include('cookie-banner/_cp/_widgets/_table.twig')|raw %}
+                                {% include('_statik-cookie-banner/_cp/_widgets/_table.twig')|raw %}
                             </div>
                         </div>
                     </div>
