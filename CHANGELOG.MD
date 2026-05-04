@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.5.0 - 2026-05-04
+### Fixed
+- Updated plugin handle to avoid conflicts with other plugins
+
 ## 3.4.0 - 2025-05-12
 ### Added
 - Added functionality to have an url as cookiePage ([#21](https://github.com/statikbe/craft-cookie-banner/issues/21))
