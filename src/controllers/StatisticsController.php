@@ -21,7 +21,7 @@ class StatisticsController extends Controller
             $site = \Craft::$app->sites->getSiteById($siteId);
         }
 
-        if($groupId) {
+        if ($groupId) {
             $sites = \Craft::$app->getSites()->getSitesByGroupId($groupId);
             $siteIds = collect($sites)->pluck('id')->all();
         }
@@ -32,7 +32,7 @@ class StatisticsController extends Controller
         $deniedCookies = 0;
         $settingsCookies = 0;
         /** @var CookieTrackingRecord $record */
-        foreach($records as $record) {
+        foreach ($records as $record) {
             if ($siteIds && !in_array($record->siteId, $siteIds)) {
                 continue;
             }
@@ -66,7 +66,7 @@ class StatisticsController extends Controller
 
     public function actionTableViewSite(int $siteId, int $page = 1): Response
     {
-        if($siteId === 0) {
+        if ($siteId === 0) {
             $sites = \Craft::$app->getSites()->getAllSites();
             $siteIds = collect($sites)->pluck('id')->all();
             $rows = $this->parseDataForTable($siteIds);
@@ -86,7 +86,8 @@ class StatisticsController extends Controller
     }
 
 
-    private function parseDataForTable(array $sites = []) {
+    private function parseDataForTable(array $sites = [])
+    {
         $rows = [];
         $records = CookieTrackingRecord::find()->orderBy('sectionDate DESC')->all();
         /** @var CookieTrackingRecord $record */
@@ -141,7 +142,7 @@ class StatisticsController extends Controller
 
     private function getPercentage($a, $b)
     {
-        if($a && $b) {
+        if ($a && $b) {
             return round((($a / $b) * 100));
         }
     }
