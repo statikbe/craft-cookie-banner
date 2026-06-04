@@ -20,6 +20,8 @@ class CookieBanner extends Plugin
 {
     public bool $hasCpSection = true;
 
+    public string $schemaVersion = '2.0.0';
+
     public function init(): void
     {
         parent::init();
