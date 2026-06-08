@@ -55,13 +55,13 @@ class CookieBannerVariable
                 if (isset($settings['banner']) && !empty($settings['banner'])) {
                     $this->banner = ['template' => $settings['banner'], 'mode' => View::TEMPLATE_MODE_SITE];
                 }
-                echo \Craft::$app->getView()->renderTemplate($this->banner['template'], [], $this->banner['mode']);
+                echo \Craft::$app->getView()->renderTemplate($this->banner['template'], ['cookiePage' => $this->cookiePage], $this->banner['mode']);
             }
 
             if (isset($settings['overlay']) && !empty($settings['overlay'])) {
-                echo \Craft::$app->getView()->renderString($settings['overlay'], [], View::TEMPLATE_MODE_SITE);
+                echo \Craft::$app->getView()->renderString($settings['overlay'], ['cookiePage' => $this->cookiePage], View::TEMPLATE_MODE_SITE);
             } else {
-                echo \Craft::$app->getView()->renderTemplate($this->overlay, [], View::TEMPLATE_MODE_CP);
+                echo \Craft::$app->getView()->renderTemplate($this->overlay, ['cookiePage' => $this->cookiePage], View::TEMPLATE_MODE_CP);
             }
 
 
