@@ -3,12 +3,12 @@
         <button type="button" class="cookie-modal__close-action absolute top-0 right-0 mt-6 mr-8 js-modal-close-btn notranslate">
             <svg xmlns="http://www.w3.org/2000/svg" class="cookie-modal__close-icon w-5 h-5 pointer-events-none" width="48" height="48" viewBox="0 0 48 48"><path d="M38 12.83L35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"/></svg>
             <span class="sr-only">
-                {{ "Sluit cookie instellingen"|t('_statik-cookie-banner')}}
+                {{ 'Sluit cookie instellingen'|t('_statik-cookie-banner') }}
             </span>
         </button>
         <h1 id="cookie_settings_title" class="mb-1 text-xl sm:text-2xl">{{ 'Cookie-instellingen'|t('_statik-cookie-banner') }}</h1>
         <p>
-            {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('cookie-banner',{cookieLink: cookiePage.getUrl() ?? cookiePage ?? craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
+            {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('_statik-cookie-banner', {cookieLink: cookiePage.getUrl() ?? cookiePage ?? craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
         </p>
         <div class="cookie-modal__actions mt-4 text-center" data-site="{{ currentSite.id }}">
             <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t('_statik-cookie-banner') }}</a>
@@ -57,3 +57,4 @@
         </form>
     </div>
 </div>
+
