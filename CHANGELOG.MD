@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.5.1 - 2026-06-17
+### Fixed
+- Updated plugin handle in CookieBanner.php to avoid conflicts with other plugins
+
 ## 3.5.0 - 2026-05-04
 ### Fixed
 - Updated plugin handle to avoid conflicts with other plugins
