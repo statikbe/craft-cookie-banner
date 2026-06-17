@@ -56,7 +56,7 @@ class CookieBanner extends Plugin
         }
 
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_SITE_URL_RULES, function(RegisterUrlRulesEvent $event) {
-            $event->rules['cookie-tracking/add-choice-to-database'] = 'cookie-banner/cookie-tracking/add-choice-to-database';
+            $event->rules['cookie-tracking/add-choice-to-database'] = $this->handle . '/cookie-tracking/add-choice-to-database';
         });
 
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
@@ -69,7 +69,7 @@ class CookieBanner extends Plugin
     public function getCpNavItem(): ?array
     {
         $item = parent::getCpNavItem();
-        $item['url'] = UrlHelper::cpUrl('cookie-banner/statistics', ['site' => '*']);
+        $item['url'] = UrlHelper::cpUrl($this->handle . '/statistics', ['site' => '*']);
         return $item;
     }
 }
