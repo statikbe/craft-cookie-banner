@@ -69,7 +69,7 @@ class CookieBanner extends Plugin
     public function getCpNavItem(): ?array
     {
         $item = parent::getCpNavItem();
-        $item['url'] = UrlHelper::cpUrl($this->handle . '/statistics', ['site' => '*']);
+        $item['url'] = UrlHelper::cpUrl('cookie-banner/statistics', ['site' => '*']);
         return $item;
     }
 }
