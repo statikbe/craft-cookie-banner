@@ -3,56 +3,56 @@
         <button type="button" class="cookie-modal__close-action absolute top-0 right-0 mt-6 mr-8 js-modal-close-btn notranslate">
             <svg xmlns="http://www.w3.org/2000/svg" class="cookie-modal__close-icon w-5 h-5 pointer-events-none" width="48" height="48" viewBox="0 0 48 48"><path d="M38 12.83L35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"/></svg>
             <span class="sr-only">
-                {{ "Sluit cookie instellingen"|t('cookie-banner')}}
+                {{ "Sluit cookie instellingen"|t('_statik-cookie-banner')}}
             </span>
         </button>
-        <h1 id="cookie_settings_title" class="mb-1 text-xl sm:text-2xl">{{ 'Cookie-instellingen'|t('cookie-banner') }}</h1>
+        <h1 id="cookie_settings_title" class="mb-1 text-xl sm:text-2xl">{{ 'Cookie-instellingen'|t('_statik-cookie-banner') }}</h1>
         <p>
-            {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('cookie-banner',{cookieLink: cookiePage.getUrl() ?? cookiePage ?? craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
+            {{ 'Onze website bewaart vier soorten cookies. Je kan zelf op elk moment kiezen welke je aanvaardt en welke niet. Meer informatie over wat cookies zijn en welke types cookies we verzamelen kan je lezen in ons <a href="{cookieLink}" target="_blank" class="underline hover:no-underline">cookiebeleid</a>.'|t('_statik-cookie-banner',{cookieLink: cookiePage.getUrl() ?? cookiePage ?? craft.entries.section('cookiePolicy').one().getUrl() ?? ''})|raw }}
         </p>
         <div class="cookie-modal__actions mt-4 text-center" data-site="{{ currentSite.id }}">
-            <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t('cookie-banner') }}</a>
+            <a href="#" class="btn btn--primary js-cookie-accept notranslate">{{ 'Alle cookies aanvaarden'|t('_statik-cookie-banner') }}</a>
         </div>
-        <h2 class="mt-4 mb-1 text-lg">{{ 'Je voorkeuren aanpassen'|t('cookie-banner') }}</h2>
+        <h2 class="mt-4 mb-1 text-lg">{{ 'Je voorkeuren aanpassen'|t('_statik-cookie-banner') }}</h2>
         <form>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
                     <input class="js-cookie-essential mr-4" type="checkbox" name="essential" id="essential" disabled checked>
-                    <label for="essential">{{ 'Essentiële cookies'|t('cookie-banner') }}</label>
+                    <label for="essential">{{ 'Essentiële cookies'|t('_statik-cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
-                    {{ 'zijn om technische redenen noodzakelijk voor de goede werking. Zonder deze cookies zou het kunnen dat de website niet naar behoren functioneert.'|t('cookie-banner') }}
+                    {{ 'zijn om technische redenen noodzakelijk voor de goede werking. Zonder deze cookies zou het kunnen dat de website niet naar behoren functioneert.'|t('_statik-cookie-banner') }}
                 </div>
             </div>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
                     <input class="js-cookie-essential mr-4" type="checkbox" name="functional" id="functional" disabled checked>
-                    <label for="functional">{{ 'Functionele cookies'|t('cookie-banner') }}</label>
+                    <label for="functional">{{ 'Functionele cookies'|t('_statik-cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
-                    {{ 'zijn noodzakelijk voor bepaalde functies op de website. Zonder deze cookies kunnen sommige onderdelen onbruikbaar worden.'|t('cookie-banner') }}
+                    {{ 'zijn noodzakelijk voor bepaalde functies op de website. Zonder deze cookies kunnen sommige onderdelen onbruikbaar worden.'|t('_statik-cookie-banner') }}
                 </div>
             </div>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
                     <input class="js-cookie-performance mr-4" type="checkbox" name="CookiePerformance" id="performance" value="2">
-                    <label for="performance">{{ 'Analytische cookies'|t('cookie-banner') }}</label>
+                    <label for="performance">{{ 'Analytische cookies'|t('_statik-cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
-                    {{ 'laten ons toe om het gebruik van de website anoniem te analyseren en de gebruikservaring te verbeteren.'|t('cookie-banner') }}
+                    {{ 'laten ons toe om het gebruik van de website anoniem te analyseren en de gebruikservaring te verbeteren.'|t('_statik-cookie-banner') }}
                 </div>
             </div>
             <div class="cookie-modal__options mb-4">
                 <div class="cookie-modal__checks flex items-center text-base font-bold">
                     <input class="js-cookie-marketing mr-4" type="checkbox" name="CookieMarketing" id="marketing" value="3">
-                    <label for="marketing">{{ 'Marketingcookies'|t('cookie-banner') }}</label>
+                    <label for="marketing">{{ 'Marketingcookies'|t('_statik-cookie-banner') }}</label>
                 </div>
                 <div class="cookie-modal__description ml-8">
-                    {{ 'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.'|t('cookie-banner') }}
+                    {{ 'hebben als doel het personaliseren van de gebruikservaring en het tonen van relevante inhoud en aanbiedingen op deze en andere websites.'|t('_statik-cookie-banner') }}
                 </div>
             </div>
             <div class="cookie-modal__actions" data-site="{{ currentSite.id }}">
-                <button type="submit" class="btn btn--primary js-modal-close notranslate">{{ 'Mijn keuze bewaren'|t('cookie-banner') }}</button>
+                <button type="submit" class="btn btn--primary js-modal-close notranslate">{{ 'Mijn keuze bewaren'|t('_statik-cookie-banner') }}</button>
             </div>
         </form>
     </div>
